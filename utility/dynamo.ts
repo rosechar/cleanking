@@ -7,5 +7,9 @@ export const client = new DynamoDBClient({
       secretAccessKey: process.env.SECRET_KEY
     },
     region: process.env.REGION
-  });
-export const ddbDocClient = DynamoDBDocumentClient.from(client); 
+  }
+  );
+export const ddbDocClient = DynamoDBDocumentClient.from(client, {
+  marshallOptions: {
+    removeUndefinedValues: true
+}}); 

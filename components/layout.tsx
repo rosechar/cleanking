@@ -15,7 +15,7 @@ export default function Layout({ children }) {
   return (
     <React.Fragment>
       <Box sx={{minHeight:"100vh", position: "relative"}}>
-        <Box pb={"4rem"}>
+      <Box pb={"4rem"}>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider', padding:1, justifyContent: "space-between" }}>
       <Stack direction={"column"} >
         <Link
@@ -32,7 +32,7 @@ export default function Layout({ children }) {
         
         </Stack>
         <Box>
-          <Button href="/contact"> Schedule Appointment </Button>
+          <Button href="/contact" variant="outlined" size="small" sx={{color:"text.secondary"}}> Schedule Appointment </Button>
         </Box>
         
         </Toolbar>
@@ -53,8 +53,8 @@ export default function Layout({ children }) {
       <main>{children}</main>
       </Box>
       <Grid container bottom={0} mb={2} position={"absolute" } justifyContent={"space-between"}>
-        <Typography ml={2} lineHeight={1.5} variant="overline" fontSize={{xs:".75rem", sm:"1rem"}}> 610 W Adrian Street {<br></br>} Blissfield, MI 49228 </Typography>
-        <Button href="tel:2488528830" > <PhoneIcon > </PhoneIcon><Typography ml={1} mr={1} fontSize={{xs:".9rem", sm:"1.25rem"}}>517-682-1919 </Typography></Button>
+        <Typography ml={{xs:2, sm:4}} lineHeight={1.5} variant="overline" fontSize={{xs:".75rem", sm:"1rem"}}> 610 W Adrian Street {<br></br>} Blissfield, MI 49228 </Typography>
+        <Button sx={{ color:"#ba000d", mr:{xs:2, sm:4}, fontSize:{xs:".9rem", sm:"1.25rem"}}} href="tel:2488528830"> <PhoneIcon sx={{pr:1, fontSize:{xs:"1.5rem", sm:"2rem"}}} > </PhoneIcon>517-682-1919 </Button>
         </Grid>
       </Box>
     </React.Fragment>

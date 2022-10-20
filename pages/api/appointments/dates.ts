@@ -2,8 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   DynamoDBClient
 } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient,
-    ScanCommand, ScanCommandInput } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
 import { add, formatISO } from 'date-fns';
 
 
@@ -24,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       FilterExpression:"apt >= :from AND apt <= :to",
       ExpressionAttributeValues: {
         ":from": formatISO(new Date(Date.now())),
-        ":to": formatISO(add(new Date(Date.now()), { days: 14 }))
+        ":to": formatISO(add(new Date(Date.now()), { days: 30 }))
     },
         ProjectionExpression: "apt"
     };

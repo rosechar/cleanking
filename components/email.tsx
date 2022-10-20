@@ -2,15 +2,18 @@ import React from "react";
 import {
   TextField,
   Button,
-  Stack
+  Stack,
+  Typography,
+  Link
 } from "@mui/material";
 import ReCAPTCHA from "react-google-recaptcha";
+import { validateField, handleChange } from "../utility/formUtils";
 
-function EmailForm({formValues, handleChange, validateField, setFormError, formError, setLoading, setFormValues, handleBackdropClose, setEmailStatus}) {
+function EmailForm({formValues, setFormError, formError, setLoading, setFormValues, setEmailStatus}) {
   const reRef = React.useRef<ReCAPTCHA>();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateField("email", formValues.email.value)) {
+    if (validateField("email", formValues.email.value, setFormValues)) {
       setFormError(true);
     }
     else {
@@ -47,15 +50,11 @@ function EmailForm({formValues, handleChange, validateField, setFormError, formE
           },
       }));
       }
-
-      handleBackdropClose();
       setEmailStatus(true);
     }
   }
   return (
-    
     <React.Fragment>
-      
         <Stack direction="column" component="form" noValidate onSubmit={handleSubmit}>
         <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} size="invisible" ref={reRef} />
         <TextField
@@ -67,23 +66,21 @@ function EmailForm({formValues, handleChange, validateField, setFormError, formE
               name="email"
               autoComplete="email"
               value={formValues.email.value}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, setFormValues)}
               error={formValues.email.error}
               helperText={formValues.email.error && formValues.email.errorMessage}
             />
-
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor:"#ba000d", color:"text.primary","&:hover": {backgroundColor: "#8e0000"} }}
             >
               Continue
             </Button>
+            <Typography fontSize={10}>This site is protected by reCAPTCHA and the Google <Link underline="none" color="inherit" href="https://policies.google.com/privacy">Privacy Policy</Link> and <Link underline="none" color="inherit" href="https://policies.google.com/terms">Terms of Service</Link> apply.</Typography>
         </Stack>
     </React.Fragment>
-
-    
   );
 };
 

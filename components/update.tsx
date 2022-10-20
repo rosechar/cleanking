@@ -9,64 +9,14 @@ import {
   OutlinedInput,
   Stack
 } from "@mui/material";
-import { formatISO } from "date-fns";
-import { Customer } from "../interfaces/customer";
-import {v4 as uuidv4} from 'uuid';
-import { validateField,handleChange } from "../utility/formUtils";
 
-function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, setFormValues}) {
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const formFields = Object.keys(formValues);
-        const custo: Customer = {
-          id: uuidv4(),
-          name: '',
-          email: '',
-          phone: 0,
-          apt: '',
-          appointment:''
-        };
-        let error = false;
-        for (let index = 0; index < formFields.length; index++) {
-            const currentField = formFields[index];
-            const currentValue = formValues[currentField].value;
-            
-            if (validateField(currentField, currentValue, setFormValues)) {
-                error = true;
-            }
-        }
-        if (error) {
-          setFormError(true);
-        }
-        else {
-            custo.name = formValues['name'].value
-            custo.email = formValues['email'].value
-            custo.phone = parseInt(formValues['phone'].value)
-            custo.appointment = formValues['appointment'].value
-            custo.apt = formatISO(new Date(formValues['time'].value))
-            custo.details = formValues['details'].value
-            
-            setLoading(true);
-            const response = await fetch('/api/appointments/book', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(custo),
-            });
-            console.log(response)
-            if (!response.ok) {
-              console.log("ERROR");
-            }
-            updateFormStatus(true);
-    
-        }
-        
-    }
+
+function UpdateForm({formValues, handleChange}) {
+
   return (
     
     <React.Fragment>
-        <Stack direction="column" component="form" noValidate onSubmit={handleSubmit}>
+        <Stack direction="column" component="form" >
             <TextField
               margin="normal"
               required
@@ -76,7 +26,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
               id="name"
               autoFocus
               value={formValues.name.value}
-              onChange={(e) => handleChange(e, setFormValues)}
+              onChange={handleChange}
               error={formValues.name.error}
               helperText={formValues.name.error && formValues.name.errorMessage}
 
@@ -90,7 +40,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
               name="email"
               autoComplete="email"
               value={formValues.email.value}
-              onChange={(e) => handleChange(e, setFormValues)}
+              onChange={handleChange}
               error={formValues.email.error}
               helperText={formValues.email.error && formValues.email.errorMessage}
             />
@@ -102,7 +52,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
               label="Phone Number"
               name="phone"
               value={formValues.phone.value}
-              onChange={(e) => handleChange(e, setFormValues)}
+              onChange={handleChange}
               error={formValues.phone.error}
               helperText={formValues.phone.error && formValues.phone.errorMessage}
 
@@ -118,7 +68,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
                     value={formValues.appointment.value}
                     label="appointment"
                     name="appointment"
-                    onChange={(e) => handleChange(e, setFormValues)}
+                    onChange={handleChange}
 
                 >
                     <MenuItem value={"interior"}>Interior Car Detail</MenuItem>
@@ -137,7 +87,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
                     value={formValues.time.value}
                     label="time"
                     name="time"
-                    onChange={(e) => handleChange(e, setFormValues)}
+                    onChange={handleChange}
                 >
                   {formValues.time.options.map((item) => {
                   return ( 
@@ -153,17 +103,9 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
               label="Additional Details"
               name="details"
               value={formValues.details.value}
-              onChange={(e) => handleChange(e, setFormValues)}
+              onChange={handleChange}
 
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Submit
-            </Button>
         </Stack>
     </React.Fragment>
 
@@ -171,4 +113,4 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
   );
 };
 
-export default ScheduleForm;
+export default UpdateForm;

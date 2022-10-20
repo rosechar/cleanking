@@ -1,10 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { Appointment } from '../../interfaces/appointment'
-import {
-  DynamoDBClient
-} from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient,
-ScanCommand } from "@aws-sdk/lib-dynamodb";
+import { ScanCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDocClient  } from '../../utility/dynamo'
 
 

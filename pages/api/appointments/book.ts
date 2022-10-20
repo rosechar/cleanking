@@ -17,8 +17,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
-        appointment: req.body.appointment
-      },
+        appointment: req.body.appointment,
+        details: req.body.details
+      }
     };
     const response = await ddbDocClient.send(new PutCommand(params));
     return res.status(201).json(response);

@@ -14,6 +14,9 @@ export default function Contact() {
       const handleBackdropClose = () => {
         setLoading(false);
       };
+      React.useEffect(() => {
+        handleBackdropClose();
+        }, [formComplete]);
         return (
             <React.Fragment>
               <Backdrop
@@ -23,18 +26,18 @@ export default function Contact() {
               >
                   <CircularProgress color="inherit" />
               </Backdrop>
-                <Stack direction={{ sm: 'column', md: 'row' }} mt={{ sm: 0, md: 5 }}  height={{ sm: "auto", md: 500 }} spacing={{ md: 5 }} justifyContent="center" alignItems="center" alignContent="center">
+                <Stack direction={{ sm: 'column', md: 'row' }} mt={{ sm: 0, md: 4 }}  height={{ sm: "auto", md: 500 }} justifyContent="center" alignItems="center" alignContent="center">
                     {formComplete ? 
                     <Box m={5} ml={{ xs: 5, sm: 0}}>
                         <Typography align="center">
                         <SuccessIcon sx={{ fontSize: 100 }}/>
                             <CalendarIcon sx={{ fontSize: 100 }} />
                         </Typography>
-                        <Typography width={{xs: 350, md: 450}} mt={3} variant="h5" fontWeight={1} align="center" >
+                        <Typography width={{xs: 300, md: 450}} mt={3} variant="h5" fontWeight={1} align="center" >
                             Thank you for booking a detail service, we look forward to seeing you. If you need to cancel please call 
                         </Typography> 
                     </Box> : 
-                    <><Box padding={3}  width={{xs: 350, md: 450}}>
+                    <><Box p={{xs:2,sm:3, md:4}}  width={{xs: 320,sm:450, md: 450}}>
                             <Typography variant="h4" pb={1} fontWeight={1}>
                                 Schedule an Appointment
                             </Typography>
