@@ -10,7 +10,8 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  Divider
+  Divider,
+  Link
 } from "@mui/material";
 import interiorImg from '../components/images/interior.jpg';
 import exteriorImg from '../components/images/exterior.jpg';
@@ -22,22 +23,26 @@ function ServiceCards() {
         {
             title: "Interior Detailing",
             details: "Using premium cleaning products, we restore your car interior to that new car feeling",
-            img:interiorImg
+            img:interiorImg,
+            slug:"interior"
         },
         {
             title: "Exterior Detailing",
             details: "Using premium cleaning products, we restore your car interior to that new car feeling",
-            img:exteriorImg
+            img:exteriorImg,
+            slug:"exterior"
         },
         {
             title: "Exterior/Interior Combo",
             details: "Using premium cleaning products, we restore your car interior to that new car feeling",
-            img:washingImg
+            img:washingImg,
+            slug:"combo"
         },
         {
             title: "Upsell Special ",
             details: "Offered as an optional add on, ",
-            img:womanImg
+            img:womanImg,
+            slug:"upsell"
         }
     ]
 
@@ -54,7 +59,7 @@ function ServiceCards() {
     {serviceCardInfo.map((card) => {
         return (
             <Card key={card.title} sx={{ width: {xs:280, sm:400, md:450}, maxHeight:900 }}>
-            <CardActionArea>
+            <CardActionArea component={Link} href={`/services?service=${card.slug}`}>
               <CardContent>
                 <Typography color="#ba000d" gutterBottom variant="h5" component="div">
                   {card.title}

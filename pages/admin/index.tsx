@@ -1,14 +1,15 @@
 import type { Customer } from '../../interfaces/customer'
 import AdminDetails from '../../components/adminDetails'
 import useSwr, { mutate } from 'swr'
-import { Backdrop, Box, Button, CircularProgress, Divider, Stack, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Alert, Snackbar } from '@mui/material'
-import { compareAsc, format, formatISO } from 'date-fns';
+import { Backdrop, Button, CircularProgress, Typography, Dialog, DialogActions, DialogContent, DialogTitle, Alert, Snackbar } from '@mui/material'
+import { format, formatISO } from 'date-fns';
 import React from 'react';
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { validateField, getAvailableDays, handleChange, defaultFormValues } from "../../utility/formUtils";
 import Update from '../../components/update'
 import AdminNewApt from '../../components/newApt'
 import AdminLayout from '../../components/adminLayout';
+
 
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
@@ -29,6 +30,7 @@ export default function Admin() {
   const [search, setSearch] = React.useState("");
   const [updateForm, setUpdateForm] = React.useState(false);
   const [newForm, setNewForm] = React.useState(false);
+  const [formError, setFormError] = React.useState(false);
   const [newSuccess, setNewSuccess] = React.useState(false);
   const { data: session } = useSession();
   const [formValues, setFormValues] = React.useState(defaultFormValues);
@@ -53,7 +55,6 @@ export default function Admin() {
 
   const openUpdateForm = async (item) => {
     let days = await getAvailableDays();
-    console.log(days)
     setActiveCustomer(item);
     days.push(format(new Date(item.apt),'MM/dd/yy' ))
     setFormValues(current => ({
@@ -90,14 +91,17 @@ export default function Admin() {
   const closeUpdateForm = () => {
     setActiveCustomer(custo);
     setUpdateForm(false);
+    setFormValues(defaultFormValues);
   };
 
   const closeNewForm = () => {
     setNewForm(false);
   };
-  const handleNewForm = () => {
+  const handleNewForm = (newApt) => {
     setNewSuccess(true);
     setFormValues(defaultFormValues);
+    data.push(newApt);
+    mutate(data);
   }
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -109,19 +113,19 @@ export default function Admin() {
       phone: 0,
       apt: '',
       appointment:'',
-      details:''
+      details:'',
+      oldApt: activeCustomer.apt
     };
     let error = false;
     for (let index = 0; index < formFields.length; index++) {
         const currentField = formFields[index];
         const currentValue = formValues[currentField].value;
-        console.log(currentField, currentValue);
         if (validateField(currentField, currentValue, setFormValues)) {
             error = true;
         }
     }
     if (error) {
-      //HANDLE ERROR
+      setFormError(true);
     }
     else {
         custo.name = formValues['name'].value
@@ -130,17 +134,30 @@ export default function Admin() {
         custo.appointment = formValues['appointment'].value
         custo.apt = formatISO(new Date(formValues['time'].value))
         custo.details = formValues['details'].value
-        console.log(custo)
         setLoading(true);
-        const response = await fetch('/api/appointments/book', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(custo),
-        });
-        if (!response.ok) {
-          console.log("ERROR");
+        if (custo.oldApt !==  formatISO(new Date(formValues['time'].value))) {
+          const response = await fetch('/api/appointments/book', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(custo),
+          });
+          if (!response.ok) {
+            console.log("ERROR");
+          }
+        }
+        else {
+          const response = await fetch('/api/appointments/book', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(custo),
+          });
+          if (!response.ok) {
+            console.log("ERROR");
+          }
         }
         data[data.indexOf(activeCustomer)] = custo;
         mutate(data);
@@ -170,6 +187,7 @@ export default function Admin() {
     setLoading(false);
     let newData = data.filter((x) => x.id != id);
     mutate(newData);
+    setUpdateForm(false);
   }
   
   if (error) return <><Typography sx={{textAlign:"center", mt:5}} >Failed to load appointments</Typography></>
@@ -188,6 +206,11 @@ export default function Admin() {
           Appointment created successfully
         </Alert>
     </Snackbar>
+    <Snackbar anchorOrigin={{vertical:'top', horizontal: 'center'}} open={formError} autoHideDuration={5000} onClose={() => setFormError(false)} >
+        <Alert onClose={() => setFormError(false)} severity="error" >
+          Please fix errors before submitting
+        </Alert>
+    </Snackbar>
     <Dialog open={newForm} onClose={closeNewForm}>
         <DialogContent>
           <AdminNewApt setNewForm={setNewForm} handleNewForm={handleNewForm}></AdminNewApt>
@@ -199,15 +222,14 @@ export default function Admin() {
           <Update formValues={formValues} handleChange={(e) => handleChange(e, setFormValues)}></Update>
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeUpdateForm}>Cancel</Button>
+          <Button color="error" onClick={() => handleDelete(activeCustomer.id, activeCustomer.apt)}>Delete</Button>
           <Button onClick={handleUpdate}>Update</Button>
         </DialogActions>
       </Dialog>
     {(session) ? <>
-          <AdminDetails option={view} data={apts} handleDelete={handleDelete} openUpdateForm={openUpdateForm} search={search}></AdminDetails>
+          <AdminDetails option={view} apts={apts} openUpdateForm={openUpdateForm} search={search} setLoading={setLoading}></AdminDetails>
         </>
       : <Typography sx={{textAlign:"center", mt:4}} >Sign in to view admin interface</Typography> }
-      
       </AdminLayout>
       
 )

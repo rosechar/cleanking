@@ -12,11 +12,14 @@ export default async function userHandler(req: NextApiRequest, res: NextApiRespo
     method,
   } = req
   const session = await unstable_getServerSession(req, res, authOptions);
-  const isHuman = await validateHuman(token);
-  if (!isHuman) {
-    res.status(400);
-    return;
+  if (!session) {
+    const isHuman = await validateHuman(token);
+    if (!isHuman) {
+      res.status(400);
+      return;
+    }
   }
+
 
   if (method === 'GET') {
       const params = {

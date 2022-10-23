@@ -53,7 +53,7 @@ export default function Layout({ children }) {
       <main>{children}</main>
       </Box>
       <Grid container bottom={0} mb={2} position={"absolute" } justifyContent={"space-between"}>
-        <Typography ml={{xs:2, sm:4}} lineHeight={1.5} variant="overline" fontSize={{xs:".75rem", sm:"1rem"}}> 610 W Adrian Street {<br></br>} Blissfield, MI 49228 </Typography>
+        <Typography sx={{ color:"#ba000d"}} ml={{xs:2, sm:4}} lineHeight={1.5} variant="overline" fontSize={{xs:".75rem", sm:"1rem"}}> 610 W Adrian Street {<br></br>} Blissfield, MI 49228 </Typography>
         <Button sx={{ color:"#ba000d", mr:{xs:2, sm:4}, fontSize:{xs:".9rem", sm:"1.25rem"}}} href="tel:2488528830"> <PhoneIcon sx={{pr:1, fontSize:{xs:"1.5rem", sm:"2rem"}}} > </PhoneIcon>517-682-1919 </Button>
         </Grid>
       </Box>

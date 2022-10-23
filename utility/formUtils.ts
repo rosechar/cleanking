@@ -13,7 +13,7 @@ export const handleChange = (e, setFormValues) => {
 
   import { add, eachDayOfInterval, formatISO, format } from "date-fns";
 
-export async function getAvailableDays() : Promise<Array<string>> {
+export async function getAvailableDays(range = 30) : Promise<Array<string>> {
     let dates = [];
     let availableDaysFinal = []
     const response = await fetch('/api/appointments/dates',{
@@ -37,7 +37,7 @@ export async function getAvailableDays() : Promise<Array<string>> {
       now = add(now, { days: 1 });
     }
     now.setHours(0);
-    let endDay = add(now, { days: 30 });
+    let endDay = add(now, { days: range });
     const availableDays = eachDayOfInterval({
     start: now,
     end: endDay,
@@ -95,6 +95,9 @@ export function validateField(field, value, setFormValues) {
   }
 
   export const defaultFormValues = {
+    id:{
+      value:''
+    },
     name:{
       value:'',
       error:false,

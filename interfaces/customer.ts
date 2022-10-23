@@ -7,4 +7,6 @@ export type Customer = {
   apt?: string
   appointment?: string
   details?: string
+  new?: boolean
+  oldApt?: string
 }

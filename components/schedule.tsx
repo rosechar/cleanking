@@ -19,7 +19,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
         e.preventDefault();
         const formFields = Object.keys(formValues);
         const custo: Customer = {
-          id: uuidv4(),
+          id: '',
           name: '',
           email: '',
           phone: 0,
@@ -39,6 +39,8 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
           setFormError(true);
         }
         else {
+          console.log(formFields, formValues)
+            custo.id = (formValues['id'].value !== "") ? formValues['id'].value : uuidv4();
             custo.name = formValues['name'].value
             custo.email = formValues['email'].value
             custo.phone = parseInt(formValues['phone'].value)
@@ -58,15 +60,15 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
             if (!response.ok) {
               console.log("ERROR");
             }
-            updateFormStatus(true);
-    
+            custo.apt = formValues['time'].value
+            updateFormStatus(true, custo);
         }
         
     }
   return (
     
     <React.Fragment>
-        <Stack direction="column" component="form" noValidate onSubmit={handleSubmit}>
+        <Stack direction="column" component="form" noValidate onSubmit={handleSubmit} mb={1}>
             <TextField
               margin="normal"
               required
@@ -160,7 +162,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor:"#ba000d", color:"text.primary","&:hover": {backgroundColor: "#8e0000"} }}
             >
               Submit
             </Button>

@@ -1,1 +1,8 @@
 .grecaptcha-badge { visibility: hidden; }
+
+.custom-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+  }

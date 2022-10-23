@@ -32,6 +32,9 @@ function EmailForm({formValues, setFormError, formError, setLoading, setFormValu
       if (data.length > 0) {
         setFormValues(current => ({
           ...current,
+          id: {
+            value:data[0].id
+          },
           name: {
             ...current.name,
             value:data[0].name

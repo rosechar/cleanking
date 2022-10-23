@@ -13,6 +13,9 @@ function ContactForm({setLoading, updateFormStatus, handleBackdropClose}) {
   const [emailStatus, setEmailStatus] =  React.useState(false);
   const [formError, setFormError] = React.useState(false);
   const [formValues, setFormValues] = React.useState({
+      id:{
+        value:''
+      },
       name:{
         value:'',
         error:false,

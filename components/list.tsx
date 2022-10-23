@@ -20,9 +20,10 @@ import InfoIcon from '@mui/icons-material/InfoOutlined';
 import { compareAsc, format } from "date-fns";
 
 
-function ListView({apts, openUpdateForm, handleDelete}) {
+function ListView({apts, openUpdateForm}) {
   return (
-  <Stack direction="column" spacing={2} pb={5} minHeight={"100vh"}>
+    <React.Fragment>
+  <Stack direction="column" spacing={2} p={4} minHeight={"100vh"} >
           
   {apts.sort((a, b) => {return compareAsc(new Date(a.apt), new Date(b.apt))}).map((item) => {
     return (
@@ -62,12 +63,12 @@ function ListView({apts, openUpdateForm, handleDelete}) {
           <Divider />
           <AccordionActions>
             <Button size="small" color="inherit" onClick={() => openUpdateForm(item)}>Update</Button>
-            <Button size="small" color="error" onClick={() => handleDelete(item.id, item.apt)}>Delete</Button>
           </AccordionActions>
         </Accordion>
       </div>);
     })}
   </Stack>
+  </React.Fragment>
   )
 };
 

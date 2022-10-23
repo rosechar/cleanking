@@ -7,7 +7,9 @@ import {
   Box,
   Button,
   Grid,
-  TextField
+  TextField,
+  createTheme,
+  ThemeProvider
 } from "@mui/material";
 import { signIn, signOut, useSession } from "next-auth/react";
 import AddIcon from '@mui/icons-material/AddCircleOutlineOutlined';
@@ -16,10 +18,23 @@ import CustomerIcon from '@mui/icons-material/PeopleOutlineOutlined';
 import ListIcon from '@mui/icons-material/FormatListBulletedOutlined';
 import CalendarIcon from '@mui/icons-material/CalendarMonthOutlined';
 
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#ffffff'
+    },
+    secondary: {
+      main: '#ba000d',
+    },
+  },
+});
+
 export default function AdminLayout({ children, setNewForm, setView, view, search, handleSearchChange }) {
   const { data: session } = useSession();
 
   return (
+    <ThemeProvider theme={theme}>
     <React.Fragment>
       <Box sx={{minHeight:"100vh", position: "relative"}}>
       <Box pb={"4rem"}>
@@ -48,9 +63,9 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
           justifyContent="flex-start"
           alignItems="flex-end"
         >
-          {session ? <><Button sx={{alignContent:"right"}} onClick={() => signOut()}> <Typography lineHeight={1} fontSize={{xs:".75rem", sm:"1rem"}}>Sign Out </Typography></Button>
+          {session ? <><Button sx={{alignContent:"right"}} onClick={() => signOut()}> <Typography color="secondary" lineHeight={1} fontSize={{xs:".8rem", sm:"1rem"}}>Sign Out </Typography></Button>
           </> :
-          <Button onClick={() => signIn()}><Typography lineHeight={1} fontSize={{xs:".75rem", sm:"1rem"}}> Sign In</Typography> </Button>}
+          <Button onClick={() => signIn()}><Typography color="secondary" lineHeight={1} fontSize={{xs:".8rem", sm:"1rem"}}> Sign In</Typography> </Button>}
         </Grid>
       </Grid>
       </Grid>
@@ -59,26 +74,26 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
       </Box>
       <Grid sx={{backgroundColor:"#121212"}} container bottom={0} padding={1}  direction={{xs:"column-reverse", sm:"row"}}  position={"fixed" } alignItems="center" justifyContent="space-between">
         {session ? 
-        <><Grid item ml={1}>
-            <Button onClick={() => { setNewForm(true) } } sx={{ color: '#ffffff',minWidth: {xs:"40px", sm:"50px"} }}>
+        <><Grid item ml={1} mb={{sm:2}}>
+            <Button onClick={() => { setNewForm(true) } } sx={{ color: '#ffffff', minWidth: {xs:"40px", sm:"50px"} }}>
               <AddIcon  ></AddIcon>
             </Button>
-            <Button onClick={() => { setView("list"); } } sx={{ color: '#ffffff',minWidth: {xs:"40px", sm:"50px"} }}>
-              <ListIcon ></ListIcon>
+            <Button onClick={() => { setView("list"); } } sx={{ minWidth: {xs:"40px", sm:"50px"} }}>
+              <ListIcon color={(view === "list") ? "secondary" : "primary"} ></ListIcon>
             </Button>
-            <Button onClick={() => { setView("calendar"); } } sx={{ color: '#ffffff',minWidth: {xs:"40px", sm:"50px"}}}>
-              <CalendarIcon  ></CalendarIcon>
+            <Button onClick={() => { setView("calendar"); } } sx={{ minWidth: {xs:"40px", sm:"50px"}}}>
+              <CalendarIcon color={(view === "calendar") ? "secondary" : "primary"} ></CalendarIcon>
             </Button>
-            <Button onClick={() => { setView("customers"); } } sx={{ color: '#ffffff',minWidth: {xs:"40px", sm:"50px"} }}>
-              <CustomerIcon  ></CustomerIcon>
+            <Button onClick={() => { setView("customers"); } } sx={{ minWidth: {xs:"40px", sm:"50px"} }}>
+              <CustomerIcon color={(view === "customers") ? "secondary" : "primary"} ></CustomerIcon>
             </Button>
-            <Button onClick={() => { setView("settings") } } sx={{ color: '#ffffff',minWidth: {xs:"40px", sm:"50px"} }}>
-              <SettingsIcon  ></SettingsIcon>
+            <Button onClick={() => { setView("settings") } } sx={{ minWidth: {xs:"40px", sm:"50px"} }}>
+              <SettingsIcon color={(view === "settings") ? "secondary" : "primary"} ></SettingsIcon>
             </Button>
           </Grid>
-          <Grid item mr={{lg: 3}} mb={{xs:1}}>
+          <Grid item mr={{sm: 3}} height={55} >
             {(view === "list") ? <TextField
-                sx={{ width: { xs: 250, sm: 300 }}}
+                sx={{ width: { xs: 250, sm: 300}}}
                 id="search"
                 label="Search"
                 name="search"
@@ -92,6 +107,7 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
       </Grid>
       </Box>
     </React.Fragment>
+    </ThemeProvider>
 
     
   );

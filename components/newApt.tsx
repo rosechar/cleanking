@@ -35,10 +35,10 @@ React.useEffect(() => {
     handleBackdropClose();
     }, [emailStatus]);
 
-const updateFormStatus = (formComplete) => {
+const updateFormStatus = (formComplete, newApt) => {
   handleBackdropClose();
   setNewForm(!formComplete);
-  handleNewForm();
+  handleNewForm(newApt);
 }
 const handleAlertClose = () => {
   setFormError(false);

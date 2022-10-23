@@ -25,6 +25,40 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(201).json(response);
     
   }
+  else if (req.method === 'PUT') {
+  const deleteParams = {
+    TableName: process.env.TABLE_NAME,
+    Key: {
+      id: req.body.id,
+      apt: req.body.oldApt
+    }
+  };
+  try {
+    const deleteResponse = await ddbDocClient.send(new DeleteCommand(deleteParams));
+  } catch (err) {
+    console.log("Error", err);
+  }
+  const putParams = {
+      TableName: process.env.TABLE_NAME,
+      Item: {
+        id: req.body.id,
+        apt: req.body.apt,
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        appointment: req.body.appointment,
+        details: req.body.details
+      }
+    };
+    try {
+      const putResponse = await ddbDocClient.send(new PutCommand(putParams));
+      return res.status(201).json(putResponse);
+    } catch (err) {
+      console.log("Error", err);
+    }
+    
+    
+  }
   else if (req.method === 'DELETE') {
     const {
         query: { id, apt }
@@ -37,7 +71,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     };
     const response = await ddbDocClient.send(new DeleteCommand(params));
-    return res.status(201).json(response);
+    return res.status(204).json(response);
     
   }
   else {

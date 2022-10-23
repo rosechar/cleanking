@@ -16,13 +16,13 @@ import {
   Box
 } from "@mui/material";
 
-function AdminDetails({ option, data, handleDelete, openUpdateForm, search }) {
+function AdminDetails({ option, apts, openUpdateForm, search, setLoading }) {
     switch (option) {
         case 'list':
             return (
                 <React.Fragment>
-                    {(data && data.length > 0) ? <>
-                        <ListView apts={data} handleDelete={handleDelete} openUpdateForm={openUpdateForm}></ListView>
+                    {(apts && apts.length > 0) ? <>
+                        <ListView apts={apts} openUpdateForm={openUpdateForm}></ListView>
                         </>
                     :<> { (search) ? <Typography pt={4} sx={{textAlign:"center"}}>No matching appointments</Typography> 
                     : <Typography pt={4} sx={{textAlign:"center"}}>There are currently no upcoming appointments</Typography>}
@@ -31,15 +31,15 @@ function AdminDetails({ option, data, handleDelete, openUpdateForm, search }) {
             );
         case 'calendar':
             return (
-                <Box pb={5} minHeight={"50vh"}><CalendarView apts={data}></CalendarView> </Box>
+                <Box pb={5} minHeight={"50vh"}><CalendarView apts={apts} openUpdateForm={openUpdateForm}></CalendarView> </Box>
             );
         case 'customers':
             return (
-                <React.Fragment> <Customers apts={data}></Customers> </React.Fragment>
+                <React.Fragment> <Customers apts={apts}></Customers> </React.Fragment>
             );
         case 'settings':
             return(
-            <React.Fragment> <Settings></Settings></React.Fragment>
+            <React.Fragment> <Settings setLoading={setLoading}></Settings></React.Fragment>
             );
         default:
             break;
