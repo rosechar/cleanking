@@ -1,6 +1,6 @@
 import { Divider, Fade, Grid, Box, ImageList, ImageListItem, Typography, Button } from '@mui/material'
 import React from 'react'
-import exteriorImg from '../components/images/exterior.jpg';
+import interiorImg from '../components/images/interior1.jpg';
 import exterior1Img from '../components/images/exterior1.jpg';
 import tireImg from '../components/images/tire1.jpg';
 import toolImg from '../components/images/tool1.jpg';
@@ -37,7 +37,7 @@ export default function Index() {
             {itemData.map((item) => (
                 <ImageListItem key={item.img.src} cols={item.cols || 1} rows={item.rows || 1}>
                 <img
-                    {...srcset(item.img.src, 121, item.rows, item.cols)}
+                    {...srcset(item.img.src, 10, item.rows, item.cols)}
                     loading="lazy"
                 />
                 </ImageListItem>
@@ -64,7 +64,7 @@ const itemData = [
     rows: 2,
   },
   {
-    img: exteriorImg
+    img: interiorImg
   },
   {
     img: washing2Img,

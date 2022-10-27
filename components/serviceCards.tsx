@@ -15,9 +15,10 @@ import {
 } from "@mui/material";
 import interiorImg from '../components/images/interior.jpg';
 import exteriorImg from '../components/images/exterior.jpg';
+import exterior2Img from '../components/images/exterior2.jpg';
 import washingImg from '../components/images/washing1.jpg';
 import womanImg from '../components/images/woman.jpg';
-
+import tireImg from '../components/images/tire.jpg';
 function ServiceCards() {
     const serviceCardInfo = [
         {
@@ -29,25 +30,25 @@ function ServiceCards() {
         {
             title: "Full Detail",
             details: "Includes an interior detail as well as exterior wash and chamois dry, tire and wheel cleaning, and more.",
-            img:exteriorImg,
+            img:tireImg,
             slug:"full"
         },
         {
             title: "Deluxe Detail",
             details: "Go that extra mile and you'll thank yourself later. Includes a full detail as well as an engine bay cleaning and conditioning.",
-            img:washingImg,
+            img:womanImg,
             slug:"deluxe"
         },
         {
             title: "Spiffy Detail",
             details: "Just the essentials, including interior vacuuming and an exterior wash.",
-            img:womanImg,
+            img:exteriorImg,
             slug:"spiffy"
         },
         {
           title: "A La Carte Services",
           details: "We also offer a la carte Clay Bar Buff & Wax services",
-          img:womanImg,
+          img:exterior2Img,
           slug:"alacarte"
       }
     ]
