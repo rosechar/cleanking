@@ -37,7 +37,7 @@ export default function Contact() {
                             Thank you for booking a detail service, we look forward to seeing you. If you need to cancel please call 
                         </Typography> 
                     </Box> : 
-                    <><Box p={{xs:2,sm:3, md:4}}  width={{xs: 320,sm:450, md: 450}}>
+                    <><Box pt={2} pl={{md:3}} width={{xs: 320, md: 450}}>
                             <Typography variant="h4" pb={1} fontWeight={1}>
                                 Schedule an Appointment
                             </Typography>
@@ -48,6 +48,7 @@ export default function Contact() {
                         <Box >
                             <ContactForm setLoading={setLoading} handleBackdropClose={handleBackdropClose} updateFormStatus={updateFormStatus}></ContactForm>
                             </Box>
+                        
                         </>
 }
                 </Stack>

@@ -40,8 +40,8 @@ export default function Services() {
     let service = ''
     React.useEffect(() => {
       if (router.isReady) {
-        if (router.query) {
-          service = router.asPath.split('=')[1];
+        service = router.asPath.split('=')[1];
+        if (service) {
           console.log(service);
           setSelected(service)
           let newSelection = defaultSelection;
