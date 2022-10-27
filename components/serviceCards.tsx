@@ -21,51 +21,51 @@ import womanImg from '../components/images/woman.jpg';
 function ServiceCards() {
     const serviceCardInfo = [
         {
-            title: "Interior Detailing",
-            details: "Using premium cleaning products, we restore your car interior to that new car feeling",
+            title: "Interior Detail",
+            details: "Using premium cleaning products, we restore your car interior to that new car feeling. Includes vacuuming, shampooing, dashboard and glass cleaning, and more.",
             img:interiorImg,
             slug:"interior"
         },
         {
-            title: "Exterior Detailing",
-            details: "Using premium cleaning products, we restore your car interior to that new car feeling",
+            title: "Full Detail",
+            details: "Includes an interior detail as well as exterior wash and chamois dry, tire and wheel cleaning, and more.",
             img:exteriorImg,
-            slug:"exterior"
+            slug:"full"
         },
         {
-            title: "Exterior/Interior Combo",
-            details: "Using premium cleaning products, we restore your car interior to that new car feeling",
+            title: "Deluxe Detail",
+            details: "Go that extra mile and you'll thank yourself later. Includes a full detail as well as an engine bay cleaning and conditioning.",
             img:washingImg,
-            slug:"combo"
+            slug:"deluxe"
         },
         {
-            title: "Upsell Special ",
-            details: "Offered as an optional add on, ",
+            title: "Spiffy Detail",
+            details: "Just the essentials, including interior vacuuming and an exterior wash.",
             img:womanImg,
-            slug:"upsell"
-        }
+            slug:"spiffy"
+        },
+        {
+          title: "A La Carte Services",
+          details: "We also offer a la carte Clay Bar Buff & Wax services",
+          img:womanImg,
+          slug:"alacarte"
+      }
     ]
 
   return (
     <React.Fragment>
-        <Box
-  display="flex"
-  justifyContent="center"
-  alignItems="center"
-  flexDirection={{xs:"column", sm:"row"}}
-  flexWrap="wrap"
-  gap={2}
->
+        <Grid container spacing={2} justifyContent="space-evenly">
     {serviceCardInfo.map((card) => {
         return (
-            <Card key={card.title} sx={{ width: {xs:280, sm:400, md:450}, maxHeight:900 }}>
+          <Grid item key={card.title}>
+            <Card sx={{ width: {xs:320, md:450, lg:600}, height:350 }}>
             <CardActionArea component={Link} href={`/services?service=${card.slug}`}>
               <CardContent>
                 <Typography color="#ba000d" gutterBottom variant="h5" component="div">
                   {card.title}
                 </Typography>
-                <Divider variant="middle" />
-                <Typography variant="body2" color="text.secondary">
+                <Divider  />
+                <Typography pt={1} variant="body2" fontWeight={1} >
                   {card.details}
                 </Typography>
               </CardContent>
@@ -76,10 +76,11 @@ function ServiceCards() {
               />
             </CardActionArea>
           </Card>
+          </Grid>
         )
     })}
 
-        </Box>
+        </Grid>
     </React.Fragment>
   );
 };

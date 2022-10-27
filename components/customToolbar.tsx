@@ -8,6 +8,7 @@ import RightArrowIcon from "@mui/icons-material/ChevronRight";
 import LeftArrowIcon from "@mui/icons-material/ChevronLeft";
 
 export default class CalendarToolbar extends Toolbar {
+  props: any;
 
   componentDidMount() {
     const view = this.props.view;
@@ -30,5 +31,8 @@ export default class CalendarToolbar extends Toolbar {
         <div ><Typography variant="h5" fontWeight={1}>{this.props.label}</Typography></div>
       </div>
     );
+  }
+  navigate(arg0: string): void {
+    throw new Error("Method not implemented.");
   }
 }

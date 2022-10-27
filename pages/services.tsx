@@ -1,7 +1,7 @@
 import type { Customer } from '../interfaces/customer'
 import useSwr from 'swr'
 import Link from 'next/link'
-import { Button, Chip, createTheme, Divider, Grid, Stack, ThemeProvider, Toolbar, Typography } from '@mui/material'
+import { Button, Chip, createTheme, Box, Grid, Stack, ThemeProvider, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 import ExteriorIcon from '@mui/icons-material/LocalCarWashOutlined';
 import InteriorIcon from '@mui/icons-material/CleaningServicesOutlined';
@@ -23,21 +23,26 @@ const theme = createTheme({
 export default function Services() {
     const router = useRouter()
     const defaultSelection = {
-      'exterior': false,
       'interior': false,
-      'combo': false
+      'full': false,
+      'deluxe': false,
+      'spiffy': false,
+      'alacarte': false
     }
-    const [selected, setSelected] = React.useState("exterior");
+    const [selected, setSelected] = React.useState("interior");
     const [color, setColor] = React.useState({
-        'exterior': true,
-        'interior': false,
-        'combo': false
+      'interior': true,
+      'full': false,
+      'deluxe': false,
+      'spiffy': false,
+      'alacarte': false
     })
     let service = ''
     React.useEffect(() => {
       if (router.isReady) {
         if (router.query) {
           service = router.asPath.split('=')[1];
+          console.log(service);
           setSelected(service)
           let newSelection = defaultSelection;
           newSelection[service] = true;
@@ -57,21 +62,24 @@ export default function Services() {
     return (
       <ThemeProvider theme={theme}>
             <React.Fragment>
-            <Stack direction="column" justifyContent="center" >
+            <Stack direction="column" justifyContent="center" spacing={2} >
             <Stack sx={{ justifyContent: 'space-between' }} direction={{ sm: 'column', md: 'row' }} alignItems="center">
-                <Typography margin={2} variant="h4" fontWeight={1} pl={2}>
+                <Typography variant="h4" p={2} fontWeight={1} pl={2}>
                     Services
                 </Typography>
-                <Stack sx={{ justifyContent: 'space-evenly' }} margin={2} direction="row" rowGap={1} spacing={1} flexWrap="wrap" >
-                <Chip icon={<ExteriorIcon/>} label="Exterior Detail" variant="outlined" color={color.exterior ? 'secondary' : 'default'} onClick={() => handleClick("exterior")}  />
+                <Stack sx={{ justifyContent: 'space-evenly' }}  p={{md:2}} direction="row" rowGap={1} spacing={1} flexWrap="wrap" >
                 <Chip  icon={<InteriorIcon/>} label="Interior Detail" variant="outlined" color={color.interior ? 'secondary' : 'default'} onClick={() => handleClick("interior")}  />
-                <Chip icon={<ComboOutline/>} label="Combo" variant="outlined" color={color.combo ? 'secondary' : 'default'} onClick={() => handleClick("combo")} />                </Stack>
+                <Chip icon={<ExteriorIcon/>} label="Full Detail" variant="outlined" color={color.full ? 'secondary' : 'default'} onClick={() => handleClick("full")}  />
+                <Chip icon={<ComboOutline/>} label="Deluxe Detail" variant="outlined" color={color.deluxe ? 'secondary' : 'default'} onClick={() => handleClick("deluxe")} />    
+                <Chip icon={<ComboOutline/>} label="Spiffy Detail" variant="outlined" color={color.spiffy ? 'secondary' : 'default'} onClick={() => handleClick("spiffy")} />                
+                <Chip icon={<ComboOutline/>} label="A La Carte Services" variant="outlined" color={color.alacarte ? 'secondary' : 'default'} onClick={() => handleClick("alacarte")} />                            
+                </Stack>
             </Stack>
             
             <ServiceDetails option={selected} ></ServiceDetails>
-            
-            <Button href="/contact" sx={{textAlign:"center", color:"text.secondary", m:3}} variant="outlined" size="large"> Schedule A Detail Service For As Soon As Tomorrow </Button>
-
+            <Box p={2} display="flex" justifyContent="center">
+            <Button href="/contact" sx={{textAlign:"center", color:"text.secondary"}} variant="outlined" size="large"> Schedule a Detail Service For As Soon As Tomorrow </Button>
+            </Box>
             </Stack>
         </React.Fragment>
         </ThemeProvider>

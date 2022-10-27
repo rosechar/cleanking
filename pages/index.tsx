@@ -44,7 +44,10 @@ export default function Index() {
             ))}
             </ImageList>
         </Fade>
-        <Box>
+        <Divider ><Typography fontWeight={1} fontSize={"1.5rem"} variant="overline">Services</Typography></Divider>
+
+        <Box pt={2}>
+
           <ServiceCards></ServiceCards>
           </Box>
           <Box display="flex" justifyContent="center" mt={3}>
