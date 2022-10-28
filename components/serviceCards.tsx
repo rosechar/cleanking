@@ -19,6 +19,7 @@ import exterior2Img from '../components/images/exterior2.jpg';
 import washingImg from '../components/images/washing1.jpg';
 import womanImg from '../components/images/woman.jpg';
 import tireImg from '../components/images/tire.jpg';
+
 function ServiceCards() {
     const serviceCardInfo = [
         {
@@ -59,7 +60,7 @@ function ServiceCards() {
     {serviceCardInfo.map((card) => {
         return (
           <Grid item key={card.title}>
-            <Card sx={{ width: {xs:320, md:450, lg:600}, height:350 }}>
+            <Card sx={{ width: {xs:320, md:450}, height:300 }}>
             <CardActionArea component={Link} href={`/services?service=${card.slug}`}>
               <CardContent>
                 <Typography color="#ba000d" gutterBottom variant="h5" component="div">

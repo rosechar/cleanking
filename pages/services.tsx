@@ -8,10 +8,12 @@ import InteriorIcon from '@mui/icons-material/CleaningServicesOutlined';
 import ComboOutline from '@mui/icons-material/NoCrashOutlined';
 import ServiceDetails from "../components/serviceDetails";
 import { useRouter } from 'next/router'
+import ScheduleIcon from '@mui/icons-material/EventAvailableOutlined';
+
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
       main: '#ffffff'
     },
@@ -78,7 +80,7 @@ export default function Services() {
             
             <ServiceDetails option={selected} ></ServiceDetails>
             <Box p={2} display="flex" justifyContent="center">
-            <Button href="/contact" sx={{textAlign:"center", color:"text.secondary"}} variant="outlined" size="large"> Schedule a Detail Service For As Soon As Tomorrow </Button>
+            <Button href="/contact" sx={{textAlign:"center", color:"text.secondary", borderColor:"gray"}} variant="outlined" size="large" > Schedule a Detail Service For As Soon As Tomorrow </Button>
             </Box>
             </Stack>
         </React.Fragment>

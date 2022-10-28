@@ -7,15 +7,8 @@ import toolImg from '../components/images/tool1.jpg';
 import washing2Img from '../components/images/washing2.jpg';
 import washingImg from '../components/images/washing.jpg';
 import ServiceCards from '../components/serviceCards';
-
-function srcset(image, size, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${size * cols}&h=${
-      size * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
+import Testimonals from '../components/testimonials';
+import Image from 'next/image';
 
 export default function Index() {
 
@@ -36,10 +29,7 @@ export default function Index() {
             >
             {itemData.map((item) => (
                 <ImageListItem key={item.img.src} cols={item.cols || 1} rows={item.rows || 1}>
-                <img
-                    {...srcset(item.img.src, 10, item.rows, item.cols)}
-                    loading="lazy"
-                />
+                <Image objectFit='cover' quality={50} layout="fill" src={item.img.src}></Image>
                 </ImageListItem>
             ))}
             </ImageList>
@@ -47,12 +37,17 @@ export default function Index() {
         <Divider ><Typography fontWeight={1} fontSize={"1.5rem"} variant="overline">Services</Typography></Divider>
 
         <Box pt={2}>
-
           <ServiceCards></ServiceCards>
-          </Box>
-          <Box display="flex" justifyContent="center" mt={3}>
-          <Button href="/contact" sx={{textAlign:"center", color:"text.secondary"}} variant="outlined" size="large"> Schedule A Detail Service For As Soon As Tomorrow </Button>
-          </Box>
+        </Box >
+        <Box pt={2}>
+          <Divider ><Typography fontWeight={1} fontSize={"1.5rem"} variant="overline">Testimonals</Typography></Divider>
+        </Box>
+        <Box  >
+          <Testimonals></Testimonals>
+        </Box>
+        <Box display="flex" justifyContent="center" mt={3}>
+          <Button href="/contact" sx={{textAlign:"center", color:"text.secondary", borderColor:"gray"}} variant="outlined" size="large"> Schedule A Detail Service For As Soon As Tomorrow </Button>
+        </Box>
       </Grid>
     </React.Fragment>
   )
@@ -62,6 +57,7 @@ const itemData = [
   {
     img: exterior1Img,
     rows: 2,
+    height:242
   },
   {
     img: interiorImg
@@ -69,15 +65,16 @@ const itemData = [
   {
     img: washing2Img,
     cols:1
-    
   },
   {
     img: tireImg,
-    rows: 2
+    rows: 2,
+    height:242
   },
   {
     img: toolImg,
     rows: 2,
+    height:242
   },
   {
     img: washingImg

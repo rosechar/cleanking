@@ -42,7 +42,7 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
   container
   direction="row"
   justifyContent="space-between"
-  alignItems="center" sx={{ borderBottom: 1, borderColor: 'divider', padding:2 }}>
+  alignItems="center" sx={{ borderBottom: 1, borderColor: 'lightgray', padding:2 }}>
       <Grid item >
         <Link
         href="/admin"

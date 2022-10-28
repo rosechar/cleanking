@@ -78,7 +78,7 @@ function Settings({setLoading}) {
           Available dates updated successfully
         </Alert>
     </Snackbar>
-    <Stack direction="column"  pt={3}  justifyContent="center" >
+    <Stack direction="column"  pt={4}  justifyContent="center" >
         <Typography variant="h4" align="center" fontWeight={1}> Settings </Typography>
         <Stack direction={{xs:"column", sm:"row"}} alignSelf="center" spacing={2} pt={3}  >
         <div >

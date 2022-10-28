@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         id: req.body.id,
         apt: req.body.apt,
         name: req.body.name,
-        email: req.body.email,
+        email: req.body.email.toLowerCase(),
         phone: req.body.phone,
         appointment: req.body.appointment,
         details: req.body.details
@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         id: req.body.id,
         apt: req.body.apt,
         name: req.body.name,
-        email: req.body.email,
+        email: req.body.email.toLowerCase(),
         phone: req.body.phone,
         appointment: req.body.appointment,
         details: req.body.details
