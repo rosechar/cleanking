@@ -29,7 +29,7 @@ export default function Index() {
             >
             {itemData.map((item) => (
                 <ImageListItem key={item.img.src} cols={item.cols || 1} rows={item.rows || 1}>
-                <Image objectFit='cover' quality={50} layout="fill" src={item.img.src}></Image>
+                  <Image objectFit='cover' quality={50} layout="fill" src={item.img.src}></Image>
                 </ImageListItem>
             ))}
             </ImageList>

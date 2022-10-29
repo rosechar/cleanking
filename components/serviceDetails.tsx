@@ -78,9 +78,9 @@ function ServiceDetails({ option }) {
             <Typography sx={{color:"#ba000d"}}variant="overline" fontSize="2rem" fontStyle={"italic"} fontWeight={1}> Keep it clean! </Typography>
 
         </Grid>
-        <Image width={300}
-  height={150}
-  layout="responsive" objectFit="cover" src={DetailOptions[option].img} />
+        <Box height={300} position="relative">
+        <Image layout="fill" objectFit="cover" src={DetailOptions[option].img} />
+        </Box>
         </React.Fragment>
     );
     

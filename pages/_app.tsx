@@ -21,7 +21,7 @@ const clientSideEmotionCache = createEmotionCache();
 
 const lightTheme = createTheme(lightThemeOptions);
 
-const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
+const CleanKing: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const { router } = props;
   const getLayout =
@@ -37,4 +37,4 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   );
 };
 
-export default MyApp;
+export default CleanKing;

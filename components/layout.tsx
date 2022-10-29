@@ -16,8 +16,7 @@ import ScheduleIcon from '@mui/icons-material/EventAvailableOutlined';
 export default function Layout({ children }) {
   return (
     <React.Fragment>
-      <Box sx={{minHeight:"100vh", position: "relative"}}>
-      <Box pb={"4rem"}>
+      <Box sx={{minHeight:"93vh"}}>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider', padding:1, justifyContent: "space-between" }}>
       <Stack direction={"column"} >
         <Link
@@ -54,11 +53,10 @@ export default function Layout({ children }) {
       
       <main>{children}</main>
       </Box>
-      <Grid container bottom={0} mb={2} position={"absolute" } justifyContent={"space-between"}>
+      <Grid container  mb={2} justifyContent={"space-between"}>
         <Typography component={Link} underline="none" href="https://goo.gl/maps/sUBufwUwrzyeocwJ9" sx={{ color:"#ba000d"}} ml={{xs:2, sm:4}} lineHeight={1.5} variant="overline" fontSize={{xs:".75rem", sm:"1rem"}}> 610 W Adrian Street {<br></br>} Blissfield, MI 49228 </Typography>
         <Button sx={{ color:"#ba000d", mr:{xs:2, sm:4}, fontSize:{xs:".9rem", sm:"1.25rem"}}} href="tel:2488528830"> <PhoneIcon sx={{pr:1, fontSize:{xs:"1.5rem", sm:"2rem"}}} > </PhoneIcon>517-682-1919 </Button>
         </Grid>
-      </Box>
     </React.Fragment>
 
     
