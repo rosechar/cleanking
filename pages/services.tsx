@@ -80,7 +80,7 @@ export default function Services() {
             
             <ServiceDetails option={selected} ></ServiceDetails>
             <Box p={2} display="flex" justifyContent="center">
-            <Button href="/contact" sx={{textAlign:"center", color:"text.secondary", borderColor:"gray"}} variant="outlined" size="large" > Schedule a Detail Service For As Soon As Tomorrow </Button>
+            <Button href="/schedule" sx={{textAlign:"center", color:"text.secondary", borderColor:"gray"}} variant="outlined" size="large" > Schedule a Detail Service For As Soon As Tomorrow </Button>
             </Box>
             </Stack>
         </React.Fragment>
