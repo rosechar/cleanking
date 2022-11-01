@@ -1,9 +1,5 @@
 import React from "react";
 import {
-  TextField,
-  Button,
-  Stack,
-  Box,
   Grid,
   Card,
   CardActionArea,
@@ -16,7 +12,6 @@ import {
 import interiorImg from '../components/images/interior.jpg';
 import exteriorImg from '../components/images/exterior.jpg';
 import exterior2Img from '../components/images/exterior2.jpg';
-import washingImg from '../components/images/washing1.jpg';
 import womanImg from '../components/images/woman.jpg';
 import tireImg from '../components/images/tire.jpg';
 

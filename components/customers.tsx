@@ -1,13 +1,6 @@
-import type { Customer } from '../interfaces/customer'
-import useSwr, { mutate } from 'swr'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Accordion, AccordionActions, AccordionDetails, Grid, AccordionSummary, Backdrop, Box, Button, CircularProgress, Divider, Stack, Toolbar, Typography } from '@mui/material'
-import { compareAsc, format } from 'date-fns';
-import PhoneIcon from '@mui/icons-material/LocalPhoneOutlined';
-import CalendarIcon from '@mui/icons-material/CalendarMonthOutlined';
-import EmailIcon from '@mui/icons-material/EmailOutlined';
+import { Grid, Typography } from '@mui/material'
 import React from 'react';
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 
 
 export default function Customers({apts}) {

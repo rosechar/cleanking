@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import exterior1Img from './images/exterior1.jpg';
+import React from "react";
 import tireImg from './images/tire2.jpg';
 import toolImg from './images/tool1.jpg';
 import washing2Img from './images/washing2.jpg';
@@ -8,15 +7,11 @@ import ArrowIcon from '@mui/icons-material/ArrowRightOutlined';
 import Image from 'next/image'
 import {
   Typography,
-  Stack,
   Grid,
-  Divider,
   Box,
   ListItem,
-  List,
   ListItemIcon,
   ListItemText,
-  Button
 } from "@mui/material";
 
 const DetailOptions = {

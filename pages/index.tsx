@@ -46,7 +46,7 @@ export default function Index() {
           <Testimonals></Testimonals>
         </Box>
         <Box display="flex" justifyContent="center" mt={3}>
-          <Button href="/contact" sx={{textAlign:"center", color:"text.secondary", borderColor:"gray"}} variant="outlined" size="large"> Schedule A Detail Service For As Soon As Tomorrow </Button>
+          <Button href="/schedule" sx={{textAlign:"center", color:"text.secondary", borderColor:"gray"}} variant="outlined" size="large"> Schedule A Detail Service For As Soon As Tomorrow </Button>
         </Box>
       </Grid>
     </React.Fragment>

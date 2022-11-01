@@ -1,18 +1,10 @@
 import React, { useEffect } from "react";
-import exterior1Img from './images/exterior1.jpg';
-import tireImg from './images/tire2.jpg';
-import toolImg from './images/tool1.jpg';
-import washing2Img from './images/washing2.jpg';
-import washingImg from './images/washing.jpg';
-import Image from 'next/image'
 import CalendarView from './calendar'
 import ListView from './list'
 import Customers from './customers'
 import Settings from './settings'
 import {
   Typography,
-  Stack,
-  Fade,
   Box
 } from "@mui/material";
 

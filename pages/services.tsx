@@ -1,14 +1,10 @@
-import type { Customer } from '../interfaces/customer'
-import useSwr from 'swr'
-import Link from 'next/link'
-import { Button, Chip, createTheme, Box, Grid, Stack, ThemeProvider, Toolbar, Typography } from '@mui/material'
+import { Button, Chip, createTheme, Box, Stack, ThemeProvider, Typography } from '@mui/material'
 import React from 'react'
 import ExteriorIcon from '@mui/icons-material/LocalCarWashOutlined';
 import InteriorIcon from '@mui/icons-material/CleaningServicesOutlined';
 import ComboOutline from '@mui/icons-material/NoCrashOutlined';
 import ServiceDetails from "../components/serviceDetails";
 import { useRouter } from 'next/router'
-import ScheduleIcon from '@mui/icons-material/EventAvailableOutlined';
 
 
 const theme = createTheme({
