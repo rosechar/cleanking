@@ -1,4 +1,4 @@
-import { Button, Chip, createTheme, Box, Stack, ThemeProvider, Typography } from '@mui/material'
+import { Button, Chip, createTheme, Box, Stack, ThemeProvider, Typography, useTheme } from '@mui/material'
 import React from 'react'
 import ExteriorIcon from '@mui/icons-material/LocalCarWashOutlined';
 import InteriorIcon from '@mui/icons-material/CleaningServicesOutlined';
@@ -7,18 +7,20 @@ import ServiceDetails from "../components/serviceDetails";
 import { useRouter } from 'next/router'
 
 
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#ffffff'
-    },
-    secondary: {
-      main: '#ba000d',
-    },
-  },
-});
 export default function Services() {
+    const curTheme = useTheme();
+
+    const theme = createTheme({
+      palette: {
+        mode: curTheme.palette.mode,
+        primary: {
+          main: curTheme.palette.primary.main
+        },
+        secondary: {
+          main: '#ba000d',
+        },
+      },
+    });
     const router = useRouter()
     const defaultSelection = {
       'interior': false,

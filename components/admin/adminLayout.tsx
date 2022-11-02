@@ -6,8 +6,7 @@ import {
   Button,
   Grid,
   TextField,
-  createTheme,
-  ThemeProvider
+  useTheme
 } from "@mui/material";
 import { signIn, signOut, useSession } from "next-auth/react";
 import AddIcon from '@mui/icons-material/AddCircleOutlineOutlined';
@@ -15,24 +14,44 @@ import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import CustomerIcon from '@mui/icons-material/PeopleOutlineOutlined';
 import ListIcon from '@mui/icons-material/FormatListBulletedOutlined';
 import CalendarIcon from '@mui/icons-material/CalendarMonthOutlined';
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  experimental_extendTheme as extendTheme
+} from '@mui/material/styles';
 
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#ffffff'
-    },
-    secondary: {
-      main: '#ba000d',
-    },
-  },
-});
+
 
 export default function AdminLayout({ children, setNewForm, setView, view, search, handleSearchChange }) {
   const { data: session } = useSession();
+  const theme = extendTheme({
+      colorSchemes: {
+        light: {
+          palette: {
+            primary: {
+              main: '#121212',
+              light: '#ffffff'
+            },
+            secondary: {
+              main: '#ba000d',
+            }
+          },
+        },
+        dark: {
+          palette: {
+            primary: {
+              main: '#ffffff',
+              light: '#121212'
+            },
+            secondary: {
+              main: '#ba000d',
+            }
+          },
+        },
+      },
+    });
 
   return (
-    <ThemeProvider theme={theme}>
+    <CssVarsProvider theme={theme}>
     <React.Fragment>
       <Box sx={{minHeight:"100vh", position: "relative"}}>
       <Box pb={"4rem"}>
@@ -40,7 +59,7 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
   container
   direction="row"
   justifyContent="space-between"
-  alignItems="center" sx={{ borderBottom: 1, borderColor: 'lightgray', padding:2 }}>
+  alignItems="center" sx={{ borderBottom: 1, borderColor: 'divider', padding:2 }}>
       <Grid item >
         <Link
         href="/admin"
@@ -70,10 +89,10 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
         
       <main>{children}</main>
       </Box>
-      <Grid sx={{backgroundColor:"#121212"}} container bottom={0} padding={1}  direction={{xs:"column-reverse", sm:"row"}}  position={"fixed" } alignItems="center" justifyContent="space-between">
+      <Grid sx={{backgroundColor:"primary.light"}} container bottom={0} padding={1}  direction={{xs:"column-reverse", sm:"row"}}  position={"fixed" } alignItems="center" justifyContent="space-between">
         {session ? 
         <><Grid item ml={1} mb={{sm:2}}>
-            <Button onClick={() => { setNewForm(true) } } sx={{ color: '#ffffff', minWidth: {xs:"40px", sm:"50px"} }}>
+            <Button onClick={() => { setNewForm(true) } } sx={{ minWidth: {xs:"40px", sm:"50px"} }}>
               <AddIcon  ></AddIcon>
             </Button>
             <Button onClick={() => { setView("list"); } } sx={{ minWidth: {xs:"40px", sm:"50px"} }}>
@@ -105,7 +124,7 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
       </Grid>
       </Box>
     </React.Fragment>
-    </ThemeProvider>
+    </CssVarsProvider>
 
     
   );

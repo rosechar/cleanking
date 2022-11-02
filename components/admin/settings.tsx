@@ -20,14 +20,22 @@ import {
   Alert
 } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { getAvailableDays } from "../utility/formUtils";
-import { Customer } from "../interfaces/customer";
+import { getAvailableDays } from "../../utility/formUtils";
+import { Customer } from "../../interfaces/customer";
 import { formatISO } from "date-fns";
+import {
+  useColorScheme,
+} from '@mui/material/styles';
 
 function Settings({setLoading}) {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
   const [dateOptions, setDateOptions] = React.useState([])
   const [selectedDates, setSelectedDates] = React.useState([]);
   const [deleteSuccess, setDeleteSuccess] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   React.useEffect(() => {
     getAvailableDays().then((days) =>    
     setDateOptions(days));
@@ -70,7 +78,9 @@ function Settings({setLoading}) {
     setSelectedDates(current => [...current, ...e.target.value])
     console.log(selectedDates)
   }
-
+  if (!mounted) {
+    return null;
+  }
   return (
     <React.Fragment>
       <Snackbar anchorOrigin={{vertical:'top', horizontal: 'center'}} open={deleteSuccess} autoHideDuration={5000} onClose={() => setDeleteSuccess(true)}>
@@ -148,6 +158,21 @@ function Settings({setLoading}) {
         </Accordion>
         </div>
         </Stack>
+        <Box display={"flex"} justifyContent="center" pt={3}>
+        <Button
+        size="small"
+      variant="outlined"
+      onClick={() => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+      }}
+    >
+      Toggle Dark Mode
+    </Button>
+    </Box>
       </Stack>
     </React.Fragment>
   )

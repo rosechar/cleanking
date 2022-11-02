@@ -1,14 +1,14 @@
 import type { Customer } from '../../interfaces/customer'
-import AdminDetails from '../../components/adminDetails'
+import AdminDetails from '../../components/admin/adminDetails'
 import useSwr, { mutate } from 'swr'
 import { Backdrop, Button, CircularProgress, Typography, Dialog, DialogActions, DialogContent, DialogTitle, Alert, Snackbar } from '@mui/material'
 import { format, formatISO } from 'date-fns';
 import React from 'react';
 import { useSession } from 'next-auth/react'
 import { validateField, getAvailableDays, handleChange, defaultFormValues } from "../../utility/formUtils";
-import Update from '../../components/update'
-import AdminNewApt from '../../components/newApt'
-import AdminLayout from '../../components/adminLayout';
+import Update from '../../components/admin/update'
+import AdminNewApt from '../../components/admin/newApt'
+import AdminLayout from '../../components/admin/adminLayout';
 
 
 

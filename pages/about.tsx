@@ -31,14 +31,16 @@ export default function Services() {
           <Stack mt={3} alignItems="center">
             <Typography variant="h4" fontWeight={1}>About Us</Typography>
             <Divider><Typography variant="overline" fontWeight={1}>Hours</Typography></Divider>
-            {/* <Stack>
+          </Stack>
+            <Stack  direction="column" justifyContent={"space-between"}>
               {rows.map((day) => {
                 return (
                   <>
-                  <Stack direction="row" spacing={10} justifyContent="right">
                   <Typography>
                     {day.day}
                   </Typography>
+                  <Stack direction="row" spacing={10} justifyContent="right">
+                  
                   <Typography>
                     {day.open}
                   {(!day.closed) ? 
@@ -49,7 +51,7 @@ export default function Services() {
                     </>
                 )
               })}
-            </Stack> */}
+            
           </Stack>
             
         </React.Fragment>

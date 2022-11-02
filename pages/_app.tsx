@@ -14,6 +14,11 @@ import lightThemeOptions from '../styles/theme/lightTheme';
 import '../styles/globals.css';
 import Layout from '../components/layout';
 import { SessionProvider } from 'next-auth/react'
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+} from '@mui/material/styles';
+
+
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
@@ -42,10 +47,10 @@ const CleanKing: React.FunctionComponent<MyAppProps> = (props) => {
     </Head>
     
     <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={lightTheme}>
+    <CssVarsProvider defaultMode='system'>
         <CssBaseline />
         {getLayout(<Component {...pageProps} />)}
-      </ThemeProvider>
+      </CssVarsProvider>
     </CacheProvider>
     </div>
   );

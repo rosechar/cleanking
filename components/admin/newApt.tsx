@@ -7,9 +7,9 @@ import {
   Backdrop,
   CircularProgress,
 } from "@mui/material";
-import ScheduleForm from "./schedule";
-import EmailForm from "./email";
-import { defaultFormValues, getAvailableDays } from "../utility/formUtils";
+import ScheduleForm from "../schedule";
+import EmailForm from "../email";
+import { defaultFormValues, getAvailableDays } from "../../utility/formUtils";
 
 export default function AdminNewApt({setNewForm, handleNewForm}) {
   const [formValues, setFormValues] = React.useState(defaultFormValues)
