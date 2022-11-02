@@ -2,7 +2,7 @@ import React from "react";
 import tireImg from './images/tire2.jpg';
 import toolImg from './images/tool1.jpg';
 import washing2Img from './images/washing2.jpg';
-import washingImg from './images/washing.jpg';
+import engineImg from './images/engine.jpg';
 import ArrowIcon from '@mui/icons-material/ArrowRightOutlined';
 import Image from 'next/image'
 import {
@@ -30,7 +30,7 @@ const DetailOptions = {
     deluxe: {
         title: 'Deluxe Detail',
         details: ['Vacuum Trunk','Clean Trunk Channels','Clean & Condition Engine Bay'],
-        img: washing2Img,
+        img: engineImg,
         price:'$150'
     },
     spiffy: {

@@ -2,22 +2,33 @@ import { Button, Chip, createTheme, Box, Stack, ThemeProvider, Typography, useTh
 import React from 'react'
 import ExteriorIcon from '@mui/icons-material/LocalCarWashOutlined';
 import InteriorIcon from '@mui/icons-material/CleaningServicesOutlined';
-import ComboOutline from '@mui/icons-material/NoCrashOutlined';
+import DeluxeIcon from '@mui/icons-material/NoCrashOutlined';
+import SpiffyIcon from '@mui/icons-material/MinorCrashOutlined';
 import ServiceDetails from "../components/serviceDetails";
 import { useRouter } from 'next/router'
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  experimental_extendTheme as extendTheme
+} from '@mui/material/styles';
 
 
 export default function Services() {
     const curTheme = useTheme();
-
-    const theme = createTheme({
-      palette: {
-        mode: curTheme.palette.mode,
-        primary: {
-          main: curTheme.palette.primary.main
+    const theme = extendTheme({
+      colorSchemes: {
+        light: {
+          palette: {
+            secondary: {
+              main: '#ba000d',
+            }
+          },
         },
-        secondary: {
-          main: '#ba000d',
+        dark: {
+          palette: {
+            secondary: {
+              main: '#ba000d',
+            }
+          },
         },
       },
     });
@@ -60,7 +71,7 @@ export default function Services() {
         
       };
     return (
-      <ThemeProvider theme={theme}>
+      <CssVarsProvider theme={theme}>
             <React.Fragment>
             <Stack direction="column" justifyContent="center" spacing={2} >
             <Stack sx={{ justifyContent: 'space-between' }} direction={{ sm: 'column', md: 'row' }} alignItems="center">
@@ -70,9 +81,9 @@ export default function Services() {
                 <Stack sx={{ justifyContent: 'space-evenly' }}  p={{md:2}} direction="row" rowGap={1} spacing={1} flexWrap="wrap" >
                 <Chip  icon={<InteriorIcon/>} label="Interior Detail" variant="outlined" color={color.interior ? 'secondary' : 'default'} onClick={() => handleClick("interior")}  />
                 <Chip icon={<ExteriorIcon/>} label="Full Detail" variant="outlined" color={color.full ? 'secondary' : 'default'} onClick={() => handleClick("full")}  />
-                <Chip icon={<ComboOutline/>} label="Deluxe Detail" variant="outlined" color={color.deluxe ? 'secondary' : 'default'} onClick={() => handleClick("deluxe")} />    
-                <Chip icon={<ComboOutline/>} label="Spiffy Detail" variant="outlined" color={color.spiffy ? 'secondary' : 'default'} onClick={() => handleClick("spiffy")} />                
-                <Chip icon={<ComboOutline/>} label="A La Carte Services" variant="outlined" color={color.alacarte ? 'secondary' : 'default'} onClick={() => handleClick("alacarte")} />                            
+                <Chip icon={<DeluxeIcon/>} label="Deluxe Detail" variant="outlined" color={color.deluxe ? 'secondary' : 'default'} onClick={() => handleClick("deluxe")} />    
+                <Chip icon={<SpiffyIcon/>} label="Spiffy Detail" variant="outlined" color={color.spiffy ? 'secondary' : 'default'} onClick={() => handleClick("spiffy")} />                
+                <Chip icon={<SpiffyIcon/>} label="A La Carte Services" variant="outlined" color={color.alacarte ? 'secondary' : 'default'} onClick={() => handleClick("alacarte")} />                            
                 </Stack>
             </Stack>
             
@@ -82,6 +93,6 @@ export default function Services() {
             </Box>
             </Stack>
         </React.Fragment>
-        </ThemeProvider>
+        </CssVarsProvider>
   )
 }
