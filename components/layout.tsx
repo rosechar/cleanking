@@ -16,7 +16,7 @@ import ScheduleIcon from '@mui/icons-material/EventAvailableOutlined';
 export default function Layout({ children }) {
   return (
     <React.Fragment>
-      <Box sx={{minHeight:"93vh"}}>
+      <Box sx={{minHeight:"92vh"}}>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider', padding:1, justifyContent: "space-between" }}>
       <Stack direction={"column"} >
         <Link

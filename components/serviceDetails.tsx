@@ -56,7 +56,7 @@ function ServiceDetails({ option }) {
             {(option==="deluxe") ? <Typography fontWeight={1} variant="overline">Includes all Full Services plus... </Typography> : <></>}
             {(option==="full") ? <Typography fontWeight={1} variant="overline">Includes all Interior Services plus... </Typography> : <></>}
             </Box>
-            <Grid container width={{xs:320, md: 900}} pl={{md:6}} pt={1} >
+            <Grid container width={{xs:320, md: 900}} pl={{md:6}} pt={1} pb={1}>
             {DetailOptions[option].details.map((detail) => {
                 return (
                     <Grid item xs={12} md={6} key={detail}>
@@ -70,7 +70,7 @@ function ServiceDetails({ option }) {
                 )
             })}
             </Grid>
-            <Typography sx={{color:"#ba000d"}}variant="overline" fontSize="2rem" fontStyle={"italic"} fontWeight={1}> Keep it clean! </Typography>
+            <Typography lineHeight={1.5} sx={{color:"#ba000d"}}variant="overline" fontSize="2rem" fontStyle={"italic"} fontWeight={1}> Keep it clean! </Typography>
 
         </Grid>
         <Box height={300} position="relative">

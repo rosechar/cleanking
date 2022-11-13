@@ -123,9 +123,11 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
                     onChange={(e) => handleChange(e, setFormValues)}
 
                 >
-                    <MenuItem value={"interior"}>Interior Car Detail</MenuItem>
-                    <MenuItem value={"exterior"}>Exterior Car Detail</MenuItem>
-                    <MenuItem value={"combo"}>Interior & Exterior Combo</MenuItem>
+                    <MenuItem value={"interior"}>Interior Detail</MenuItem>
+                    <MenuItem value={"full"}>Full Detail</MenuItem>
+                    <MenuItem value={"deluxe"}>Deluxe Detail</MenuItem>
+                    <MenuItem value={"spiffy"}>Spiffy Detail</MenuItem>
+                    <MenuItem value={"alacarte"}>A La Carte</MenuItem>
                 </Select>
             </FormControl>
             <FormControl sx={{ mt: 2 }}>

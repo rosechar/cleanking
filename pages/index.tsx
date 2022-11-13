@@ -9,6 +9,7 @@ import washingImg from '../components/images/washing.jpg';
 import ServiceCards from '../components/serviceCards';
 import Testimonals from '../components/testimonials';
 import Image from 'next/image';
+import Head from 'next/head';
 
 export default function Index() {
 

@@ -227,7 +227,7 @@ export default function Admin() {
         </DialogActions>
       </Dialog>
     {(session) ? <>
-          <AdminDetails option={view} apts={apts} openUpdateForm={openUpdateForm} search={search} setLoading={setLoading}></AdminDetails>
+          <AdminDetails option={view} apts={apts} openUpdateForm={openUpdateForm} search={search} setLoading={setLoading} handleDelete={handleDelete}></AdminDetails>
         </>
       : <Typography sx={{textAlign:"center", mt:4}} >Sign in to view admin interface</Typography> }
       </AdminLayout>

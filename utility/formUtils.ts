@@ -1,3 +1,5 @@
+import { add, eachDayOfInterval, formatISO, format, isSaturday, isSunday } from "date-fns";
+
 export const handleChange = (e, setFormValues) => {
     const field = e.target.name;
     const newValue = e.target.value;
@@ -11,7 +13,6 @@ export const handleChange = (e, setFormValues) => {
     validateField(field, newValue, setFormValues);
   }
 
-  import { add, eachDayOfInterval, formatISO, format } from "date-fns";
 
 export async function getAvailableDays(range = 30) : Promise<Array<string>> {
     let dates = [];
@@ -46,7 +47,7 @@ export async function getAvailableDays(range = 30) : Promise<Array<string>> {
     availableDays.forEach((x) => {
     availableDaysISO.push(formatISO(x));
     });
-    availableDaysISO = availableDaysISO.filter(item => !dates.includes(item));
+    availableDaysISO = availableDaysISO.filter((item) => {return !dates.includes(item) && !isSunday(new Date(item)) && !isSaturday(new Date(item))});
     
     availableDaysISO.forEach((x) => {
     availableDaysFinal.push(format(new Date(x), 'MM/dd/yy'));

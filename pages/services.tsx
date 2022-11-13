@@ -1,4 +1,4 @@
-import { Button, Chip, createTheme, Box, Stack, ThemeProvider, Typography, useTheme } from '@mui/material'
+import { Button, Chip, createTheme, Box, Stack, Typography } from '@mui/material'
 import React from 'react'
 import ExteriorIcon from '@mui/icons-material/LocalCarWashOutlined';
 import InteriorIcon from '@mui/icons-material/CleaningServicesOutlined';
@@ -10,10 +10,10 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme
 } from '@mui/material/styles';
+import Head from 'next/head';
 
 
 export default function Services() {
-    const curTheme = useTheme();
     const theme = extendTheme({
       colorSchemes: {
         light: {
@@ -88,7 +88,7 @@ export default function Services() {
             </Stack>
             
             <ServiceDetails option={selected} ></ServiceDetails>
-            <Box p={2} display="flex" justifyContent="center">
+            <Box p={2} pb={3} display="flex" justifyContent="center">
             <Button href="/schedule" sx={{textAlign:"center", color:"text.secondary", borderColor:"gray"}} variant="outlined" size="large" > Schedule a Detail Service For As Soon As Tomorrow </Button>
             </Box>
             </Stack>

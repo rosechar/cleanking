@@ -18,7 +18,7 @@ import InfoIcon from '@mui/icons-material/InfoOutlined';
 import { compareAsc, format } from "date-fns";
 
 
-function ListView({apts, openUpdateForm}) {
+function ListView({apts, openUpdateForm, handleDelete}) {
   return (
     <React.Fragment>
   <Stack direction="column" spacing={2} p={4} minHeight={"100vh"} >
@@ -60,6 +60,7 @@ function ListView({apts, openUpdateForm}) {
           </AccordionDetails>
           <Divider />
           <AccordionActions>
+            <Button color="error" onClick={() => handleDelete(item.id, item.apt)}>Delete</Button>
             <Button size="small" color="inherit" onClick={() => openUpdateForm(item)}>Update</Button>
           </AccordionActions>
         </Accordion>

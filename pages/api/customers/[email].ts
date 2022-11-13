@@ -6,7 +6,6 @@ import { unstable_getServerSession } from "next-auth/next"
 import { authOptions } from "../auth/[...nextauth]"
 
 export default async function userHandler(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req.query);
   const {
     query: { email, token },
     method,

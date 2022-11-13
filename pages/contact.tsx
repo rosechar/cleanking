@@ -8,7 +8,7 @@ export default function Contact() {
 
         return (
             <React.Fragment>
-                <Stack  mt={3}  alignItems="center" direction="column" spacing={2} >
+                <Stack  mt={2}  alignItems="center" direction="column" spacing={2} >
                     <Typography variant="h4" fontWeight={1} >
                         Contact 
                     </Typography>

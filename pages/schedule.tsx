@@ -1,4 +1,4 @@
-import { Typography, Backdrop, CircularProgress, Stack, Box, Button } from "@mui/material";
+import { Typography, Backdrop, CircularProgress, Stack, Box, Button, Link } from "@mui/material";
 import React from "react";
 import ContactForm from "../components/contactForm";
 import SuccessIcon from '@mui/icons-material/DoneAll';
@@ -34,16 +34,17 @@ export default function Schedule() {
                             <CalendarIcon sx={{ fontSize: 100 }} />
                         </Typography>
                         <Typography  mt={3} mb={8} variant="h5" fontWeight={1} align="center" >
-                            Thank you for booking a detail service, we look forward to seeing you.
-                            
+                            Thank you for booking a detail service, we look forward to seeing you. 
                         </Typography> 
-                        <Button href="/cancel" sx={{color:"text.secondary"}}> If you need to cancel click here</Button>
+                        <Typography color="text.primary" underline="none" component={Link} href="/cancel" variant="body2" fontWeight={1} align="center" >
+                            If you need to cancel, click here
+                        </Typography> 
                         
                     </Stack>  
                         
                      : 
-                    <><Box pt={2} pl={{md:3}} width={{xs: 320, md: 450}}>
-                            <Typography variant="h4" pb={1} fontWeight={1}>
+                    <><Box pt={2} pr={{xs:3, md:0}} pl={{xs:3, md:3}} width={{xs: "auto", md: 450}}>
+                            <Typography variant="h4" pb={1} fontWeight={1} textAlign={{xs:"center", md:"left"}}>
                                 Schedule an Appointment
                             </Typography>
                             <Typography variant="body1" fontWeight={1} >

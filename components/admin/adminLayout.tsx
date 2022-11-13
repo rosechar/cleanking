@@ -29,7 +29,7 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
           palette: {
             primary: {
               main: '#121212',
-              light: '#ffffff'
+              light: '#9e9e9e'
             },
             secondary: {
               main: '#ba000d',
@@ -40,7 +40,7 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
           palette: {
             primary: {
               main: '#ffffff',
-              light: '#121212'
+              light: '#9e9e9e'
             },
             secondary: {
               main: '#ba000d',
@@ -89,7 +89,7 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
         
       <main>{children}</main>
       </Box>
-      <Grid sx={{backgroundColor:"primary.light"}} container bottom={0} padding={1}  direction={{xs:"column-reverse", sm:"row"}}  position={"fixed" } alignItems="center" justifyContent="space-between">
+      <Grid sx={{backgroundColor:"primary.light"}} container bottom={0} padding={1} pt={3}  direction={{xs:"column-reverse", sm:"row"}}  position={"fixed" } alignItems="center" justifyContent="space-between">
         {session ? 
         <><Grid item ml={1} mb={{sm:2}}>
             <Button onClick={() => { setNewForm(true) } } sx={{ minWidth: {xs:"40px", sm:"50px"} }}>
@@ -109,7 +109,7 @@ export default function AdminLayout({ children, setNewForm, setView, view, searc
             </Button>
           </Grid>
           <Grid item mr={{sm: 3}} height={55} >
-            {(view === "list") ? <TextField
+            {(view === "list" || view === "customers") ? <TextField
                 sx={{ width: { xs: 250, sm: 300}}}
                 id="search"
                 label="Search"

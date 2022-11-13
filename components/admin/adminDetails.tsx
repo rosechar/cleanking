@@ -8,13 +8,13 @@ import {
   Box
 } from "@mui/material";
 
-function AdminDetails({ option, apts, openUpdateForm, search, setLoading }) {
+function AdminDetails({ option, apts, openUpdateForm, search, setLoading, handleDelete }) {
     switch (option) {
         case 'list':
             return (
                 <React.Fragment>
                     {(apts && apts.length > 0) ? <>
-                        <ListView apts={apts} openUpdateForm={openUpdateForm}></ListView>
+                        <ListView apts={apts} openUpdateForm={openUpdateForm} handleDelete={handleDelete}></ListView>
                         </>
                     :<> { (search) ? <Typography pt={4} sx={{textAlign:"center"}}>No matching appointments</Typography> 
                     : <Typography pt={4} sx={{textAlign:"center"}}>There are currently no upcoming appointments</Typography>}
@@ -27,7 +27,7 @@ function AdminDetails({ option, apts, openUpdateForm, search, setLoading }) {
             );
         case 'customers':
             return (
-                <React.Fragment> <Customers apts={apts}></Customers> </React.Fragment>
+                <React.Fragment> <Customers setLoading={setLoading} apts={apts}></Customers> </React.Fragment>
             );
         case 'settings':
             return(
