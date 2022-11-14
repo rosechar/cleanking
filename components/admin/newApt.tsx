@@ -7,7 +7,7 @@ import {
   Backdrop,
   CircularProgress,
 } from "@mui/material";
-import ScheduleForm from "../schedule";
+import ScheduleForm from "../scheduleForm";
 import EmailForm from "../email";
 import { defaultFormValues, getAvailableDays } from "../../utility/formUtils";
 

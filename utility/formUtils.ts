@@ -115,7 +115,7 @@ export function validateField(field, value, setFormValues) {
       errorMessage:'Please enter a valid phone number'
     },
     appointment:{
-      value:'combo'
+      value:'deluxe'
     },
     time:{
       value:'',

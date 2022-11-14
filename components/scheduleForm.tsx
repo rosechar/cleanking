@@ -65,8 +65,8 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
         }
         
     }
+    console.log(formValues);
   return (
-    
     <React.Fragment>
         <Stack direction="column" component="form" noValidate onSubmit={handleSubmit} mb={1}>
             <TextField

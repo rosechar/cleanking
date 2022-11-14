@@ -48,7 +48,6 @@ function EmailForm({formValues, setFormError, formError, setLoading, setFormValu
             value:data[0].email
           },
           appointment: {
-            ...current.email,
             value:data[0].appointment
           },
       }));

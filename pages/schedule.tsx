@@ -1,13 +1,37 @@
-import { Typography, Backdrop, CircularProgress, Stack, Box, Button, Link } from "@mui/material";
+import { Typography, Backdrop, CircularProgress, Stack, Box, Button, Link, Alert, Snackbar } from "@mui/material";
 import React from "react";
-import ContactForm from "../components/contactForm";
 import SuccessIcon from '@mui/icons-material/DoneAll';
 import CalendarIcon from '@mui/icons-material/CalendarMonthOutlined';
+import EmailForm from "../components/email";
+import ScheduleForm from "../components/scheduleForm";
+import { defaultFormValues, getAvailableDays } from "../utility/formUtils";
 
 
 export default function Schedule() {
     const [formComplete, setFormComplete] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
+    const [emailStatus, setEmailStatus] =  React.useState(false);
+    const [formError, setFormError] = React.useState(false);
+    const [formValues, setFormValues] = React.useState(defaultFormValues)
+    React.useEffect(() => {
+      getAvailableDays().then((days) =>    
+      setFormValues(current => ({
+        ...current,
+        time: {
+          value:days[0],
+          options:days
+        },
+      })));
+  
+      }, []);
+  
+    React.useEffect(() => {
+        handleBackdropClose();
+      }, [emailStatus]);
+  
+    const handleAlertClose = () => {
+      setFormError(false);
+    };
     const updateFormStatus = (formComplete) => {
         setFormComplete(formComplete);
       }
@@ -26,7 +50,7 @@ export default function Schedule() {
               >
                   <CircularProgress color="inherit" />
               </Backdrop>
-                <Stack direction={{ sm: 'column', md: 'row' }} mt={{ xs: 2, md: 4 }}  height={{ sm: "auto", md: 500 }} justifyContent="center" alignItems="center" alignContent="center">
+                <Stack direction={{ sm: 'column', md: 'row' }} mt={{ xs: 2, md: 5 }}  height={{ sm: "auto", md: 500 }} justifyContent="center" alignItems="center" alignContent="center">
                     {formComplete ? 
                     <Stack  justifyContent="center" m={3}>
                         <Typography align="center">
@@ -43,17 +67,21 @@ export default function Schedule() {
                     </Stack>  
                         
                      : 
-                    <><Box pt={2} pr={{xs:3, md:0}} pl={{xs:3, md:3}} width={{xs: "auto", md: 450}}>
-                            <Typography variant="h4" pb={1} fontWeight={1} textAlign={{xs:"center", md:"left"}}>
-                                Schedule an Appointment
-                            </Typography>
-                            <Typography variant="body1" fontWeight={1} >
-                                Depending on the condition of the car, it may take up to 5 hours to detail. We ask that you bring your car in around 10 AM on the day of your appointment to ensure it is completed by the end of the day.
-                            </Typography>
-                        </Box>
-                        <Box >
-                            <ContactForm setLoading={setLoading} handleBackdropClose={handleBackdropClose} updateFormStatus={updateFormStatus}></ContactForm>
-                            </Box>
+                    <>
+                    <Box width={{xs: 320, md: 450}} p={1}>
+                        <Typography variant="h4" fontWeight={1} pb={1} textAlign={{xs:"center", md:"left"}}>
+                            Book Appointment 
+                        </Typography>
+                        <Typography variant="body2"  fontWeight={1}  textAlign={{xs:"center", md:"left"}}>
+                            Depending on the condition of the car, it may take up to 5 hours to detail. We ask that you bring your car in around 10 AM on the day of your appointment to ensure it is completed by the end of the day.
+                        </Typography>
+                    </Box>
+                    <Box width={{xs: 300, sm:350}}  pl={{xs:2}} pr={{xs:2}}>
+                    {emailStatus?
+                    <ScheduleForm formValues={formValues} setFormError={setFormError} setLoading={setLoading} updateFormStatus={updateFormStatus} setFormValues={setFormValues}></ScheduleForm>
+                    : <EmailForm formValues={formValues} setFormError={setFormError} formError={formError} setLoading={setLoading} setFormValues={setFormValues} setEmailStatus={setEmailStatus}></EmailForm>
+                    }
+                    </Box>
                         
                         </>
 }
