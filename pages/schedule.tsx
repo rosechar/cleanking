@@ -68,15 +68,15 @@ export default function Schedule() {
                         
                      : 
                     <>
-                    <Box width={{xs: 320, md: 450}} p={1}>
-                        <Typography variant="h4" fontWeight={1} pb={1} textAlign={{xs:"center", md:"left"}}>
+                    <Box width={{xs: 320, md: 450}} pl={{md:3}}>
+                        <Typography variant="h4" fontWeight={1} pb={1} textAlign={{xs:"left", md:"left"}}>
                             Book Appointment 
                         </Typography>
-                        <Typography variant="body2"  fontWeight={1}  textAlign={{xs:"center", md:"left"}}>
+                        <Typography variant="body2"  fontWeight={1}  textAlign={{xs:"left", md:"left"}}>
                             Depending on the condition of the car, it may take up to 5 hours to detail. We ask that you bring your car in around 10 AM on the day of your appointment to ensure it is completed by the end of the day.
                         </Typography>
                     </Box>
-                    <Box width={{xs: 300, sm:350}}  pl={{xs:2}} pr={{xs:2}}>
+                    <Box width={{xs: 325, sm:350}} pt={2} pl={{xs:2}} pr={{xs:2}}>
                     {emailStatus?
                     <ScheduleForm formValues={formValues} setFormError={setFormError} setLoading={setLoading} updateFormStatus={updateFormStatus} setFormValues={setFormValues}></ScheduleForm>
                     : <EmailForm formValues={formValues} setFormError={setFormError} formError={formError} setLoading={setLoading} setFormValues={setFormValues} setEmailStatus={setEmailStatus}></EmailForm>

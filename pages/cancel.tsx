@@ -25,7 +25,7 @@ export default function Cancel() {
         setLoading(true);
         const token = await reRef.current.executeAsync();
         reRef.current.reset();
-        const response = await fetch(`/api/customers/${email}?token=${token}`);
+        const response = await fetch(`/api/customers/${email.toLowerCase()}?token=${token}`);
         if (!response.ok) {
             console.log("ERROR");
         }
@@ -77,7 +77,7 @@ export default function Cancel() {
                         Your appointment has been cancelled, we hope to see you sometime soon!
                     </Typography> 
                 </Box> : 
-                <><Box pt={2} pl={{md:3}} width={{xs: 320, md: 450}}>
+                <><Box pt={3} pl={{md:3}} width={{xs: 320, md: 450}}>
                         <Typography variant="h4" pb={1} fontWeight={1}>
                             Cancel an appointment
                         </Typography>

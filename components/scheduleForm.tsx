@@ -63,14 +63,12 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
             custo.apt = formValues['time'].value
             updateFormStatus(true, custo);
         }
-        
     }
-    console.log(formValues);
   return (
     <React.Fragment>
         <Stack direction="column" component="form" noValidate onSubmit={handleSubmit} mb={1}>
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               name="name"
@@ -84,7 +82,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
 
             />
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               id="email"
@@ -97,7 +95,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
               helperText={formValues.email.error && formValues.email.errorMessage}
             />
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               id="phone"
@@ -109,7 +107,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
               helperText={formValues.phone.error && formValues.phone.errorMessage}
 
             />
-            <FormControl sx={{ mt: 2 }}>
+            <FormControl margin="dense">
             <InputLabel id="appointment">Appointment Type</InputLabel>
                 <Select
                     required={true}
@@ -130,7 +128,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
                     <MenuItem value={"alacarte"}>A La Carte</MenuItem>
                 </Select>
             </FormControl>
-            <FormControl sx={{ mt: 2 }}>
+            <FormControl margin="dense">
             <InputLabel id="time">Date</InputLabel>
                 <Select
                     required={true}
@@ -151,7 +149,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
                 </Select>
             </FormControl>
             <TextField
-              margin="normal"
+              margin="dense"
               fullWidth
               id="details"
               label="Additional Details"
@@ -164,7 +162,7 @@ function ScheduleForm({formValues, setFormError, setLoading, updateFormStatus, s
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, backgroundColor:"#ba000d", color:"text.primary","&:hover": {backgroundColor: "#8e0000"} }}
+              sx={{ mt: 2, mb: 2, backgroundColor:"#ba000d", color:"text.primary","&:hover": {backgroundColor: "#8e0000"} }}
             >
               Submit
             </Button>
