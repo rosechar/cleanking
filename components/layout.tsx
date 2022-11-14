@@ -6,7 +6,8 @@ import {
   Link,
   Box,
   Button,
-  Grid
+  Grid,
+  Divider
 } from "@mui/material";
 import PhoneIcon from '@mui/icons-material/LocalPhoneOutlined';
 import ScheduleIcon from '@mui/icons-material/EventAvailableOutlined';
@@ -16,7 +17,7 @@ import ScheduleIcon from '@mui/icons-material/EventAvailableOutlined';
 export default function Layout({ children }) {
   return (
     <React.Fragment>
-      <Box sx={{minHeight:"92vh"}}>
+      <Box sx={{minHeight:"88vh"}}>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider', padding:1, justifyContent: "space-between" }}>
       <Stack direction={"column"} >
         <Link
@@ -37,14 +38,16 @@ export default function Layout({ children }) {
         </Box>
         
         </Toolbar>
-        <Toolbar sx={{ borderBottom: 1, borderColor: 'divider', justifyContent: "space-evenly" }}>
-        <Link href="/contact"color="inherit" underline="none">
+        <Toolbar variant="dense" disableGutters sx={{ borderBottom: 1, borderColor: 'divider', justifyContent:"space-evenly"}}>
+        <Link href="/contact"color="inherit" underline="none" >
           <Typography fontSize={{sm:"1rem"}} variant='overline'> Contact</Typography>
         </Link>
+        <Divider orientation="vertical" flexItem />
         <Link href="/services"  color="inherit" underline="none">
           <Typography fontSize={{sm:"1rem"}} variant='overline'> Detail Services</Typography>
           
         </Link>
+        <Divider orientation="vertical" flexItem />
         <Link href="/about" color="inherit" underline="none">
           <Typography fontSize={{sm:"1rem"}} variant='overline'> About </Typography>
         </Link>

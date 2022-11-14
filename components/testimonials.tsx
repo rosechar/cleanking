@@ -40,7 +40,7 @@ const Testimonals = () => {
         <div >
             <Carousel 
                 {...settings}
-                sx={{ height:100}}
+                sx={{ height:{xs:125, sm:100}}}
             >
                 {
                     items.map((item, index) => {
@@ -81,7 +81,7 @@ function Testimonal({item}: TestimonalProps) {
 const items: Item[] = [
     {
         name: "Keven",
-        description: "Did a great job,and exceeded my expectations on my Ford Explorer.  I was happy to tip an extra amount...Would definitely recommend",
+        description: "Did a great job, exceeded my expectations on my Ford Explorer. I was happy to tip an extra amount. Would definitely recommend",
         href: 'https://goo.gl/maps/CVL7hFJoiqFFmRpF9'
     },
     {

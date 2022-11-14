@@ -75,7 +75,7 @@ export default function Services() {
             <React.Fragment>
             <Stack direction="column" justifyContent="center" spacing={2} >
             <Stack sx={{ justifyContent: 'space-between' }} direction={{ sm: 'column', md: 'row' }} alignItems="center">
-                <Typography variant="h4" p={2} fontWeight={1} pl={2}>
+                <Typography variant="h4" pt={3} pb={2} fontWeight={1} pl={{xs:0, md:4}}>
                     Services
                 </Typography>
                 <Stack sx={{ justifyContent: 'space-evenly' }}  p={{md:2}} direction="row" rowGap={1} spacing={1} flexWrap="wrap" >

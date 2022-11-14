@@ -35,17 +35,15 @@ export default function Index() {
             ))}
             </ImageList>
         </Fade>
+        <Box>
+          <Divider ><Typography fontWeight={1} fontSize={"1.5rem"} variant="overline">Testimonals</Typography></Divider>
+          <Testimonals></Testimonals>
+        </Box>
         <Divider ><Typography fontWeight={1} fontSize={"1.5rem"} variant="overline">Services</Typography></Divider>
 
         <Box pt={2}>
           <ServiceCards></ServiceCards>
         </Box >
-        <Box pt={2}>
-          <Divider ><Typography fontWeight={1} fontSize={"1.5rem"} variant="overline">Testimonals</Typography></Divider>
-        </Box>
-        <Box  >
-          <Testimonals></Testimonals>
-        </Box>
         <Box display="flex" justifyContent="center" mt={3}>
           <Button href="/schedule" sx={{textAlign:"center", color:"text.secondary", borderColor:"gray"}} variant="outlined" size="large"> Schedule A Detail Service For As Soon As Tomorrow </Button>
         </Box>
