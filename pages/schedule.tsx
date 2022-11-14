@@ -50,7 +50,7 @@ export default function Schedule() {
               >
                   <CircularProgress color="inherit" />
               </Backdrop>
-                <Stack direction={{ sm: 'column', md: 'row' }} mt={{ xs: 2, md: 5 }}  height={{ sm: "auto", md: 500 }} justifyContent="center" alignItems="center" alignContent="center">
+                <Stack direction={{ sm: 'column', md: 'row' }} mt={{ xs: 2, md: 5 }}  height={{ sm: "auto", md: 450 }} justifyContent="center" alignItems="center" alignContent="center">
                     {formComplete ? 
                     <Stack  justifyContent="center" m={3}>
                         <Typography align="center">
@@ -76,7 +76,7 @@ export default function Schedule() {
                             Depending on the condition of the car, it may take up to 5 hours to detail. We ask that you bring your car in around 10 AM on the day of your appointment to ensure it is completed by the end of the day.
                         </Typography>
                     </Box>
-                    <Box width={{xs: 325, sm:350}} pt={2} pl={{xs:2}} pr={{xs:2}}>
+                    <Box width={{xs: 320, sm:350}} pt={2} pl={{xs:2}} pr={{xs:2}}>
                     {emailStatus?
                     <ScheduleForm formValues={formValues} setFormError={setFormError} setLoading={setLoading} updateFormStatus={updateFormStatus} setFormValues={setFormValues}></ScheduleForm>
                     : <EmailForm formValues={formValues} setFormError={setFormError} formError={formError} setLoading={setLoading} setFormValues={setFormValues} setEmailStatus={setEmailStatus}></EmailForm>

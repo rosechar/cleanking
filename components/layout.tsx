@@ -18,7 +18,7 @@ export default function Layout({ children }) {
   return (
     <React.Fragment>
       <Box sx={{minHeight:"100vh", position: "relative"}}>
-      <Box pb="3.5rem">
+      <Box pb="2rem">
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider', padding:1, justifyContent: "space-between" }}>
       <Stack direction={"column"} >
         <Link

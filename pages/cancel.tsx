@@ -11,10 +11,12 @@ export default function Cancel() {
     const [email, setEmail] = React.useState("");
     const [emailError, setEmailError] = React.useState(false);
     const [cancelError, setCancelError] = React.useState(false);
+    const [cancelNotFound, setCancelNotFound] = React.useState(false);
 
     const handleChange = (e) => {
         setEmail(e.target.value);
-        (email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) ? setEmailError(false) : setEmailError(true);
+        let emailError = e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        (emailError) ? setEmailError(false) : setEmailError(true);
     }
 
     const reRef = React.useRef<ReCAPTCHA>();
@@ -38,15 +40,16 @@ export default function Cancel() {
                   'Content-Type': 'application/json',
                 }
               });
-              if (!response.ok) {
+              if (!deleteResponse.ok) {
                 console.log("ERROR");
+                setCancelError(true)
               }
             setLoading(false);
             setCancelComplete(true);
         }
         else {
             setLoading(false);
-            setCancelError(true);
+            setCancelNotFound(true);
         }
 
         
@@ -61,12 +64,17 @@ export default function Cancel() {
             >
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <Snackbar anchorOrigin={{vertical:'top', horizontal: 'center'}} open={cancelError} autoHideDuration={5000} onClose={() => setCancelError(false)}>
-                <Alert onClose={() => setCancelError(false)} severity="error" >
+            <Snackbar anchorOrigin={{vertical:'top', horizontal: 'center'}} open={cancelNotFound} autoHideDuration={5000} onClose={() => setCancelNotFound(false)}>
+                <Alert onClose={() => setCancelNotFound(false)} severity="error" >
                     No appointments found associated with that email address
                 </Alert>
             </Snackbar>
-            <Stack direction={{ sm: 'column', md: 'row' }} mt={{ sm: 0, md: 4 }}  height={{ sm: "auto", md: 500 }} justifyContent="center" alignItems="center" alignContent="center">
+            <Snackbar anchorOrigin={{vertical:'top', horizontal: 'center'}} open={cancelError} autoHideDuration={5000} onClose={() => setCancelError(false)}>
+                <Alert onClose={() => setCancelError(false)} severity="error" >
+                    There was an error cancelling your appointment, please try again or call to cancel
+                </Alert>
+            </Snackbar>
+            <Stack direction={{ sm: 'column', md: 'row' }} mt={{ sm: 0, md: 4 }}  height={{ sm: "auto", md: 450 }} justifyContent="center" alignItems="center" alignContent="center">
                 {cancelComplete ? 
                 <Box m={5} ml={{ xs: 5, sm: 0}}>
                     <Typography align="center">
@@ -85,7 +93,7 @@ export default function Cancel() {
                             No worries, just enter your email and we will cancel your appointment.
                         </Typography>
                     </Box>
-                    <Stack direction="column" component="form" noValidate onSubmit={handleSubmit} pl={2} pr={2}>
+                    <Stack width={{xs:320, sm:350}} direction="column" component="form" noValidate onSubmit={handleSubmit} pl={2} pr={2}>
                         <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} size="invisible" ref={reRef} />
                         <TextField
                             margin="normal"
